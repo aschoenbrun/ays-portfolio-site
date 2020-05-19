@@ -1,4 +1,10 @@
-import React from "react"
+import React from "react";
+import LayoutMain from "../components/LayoutMain";
 export default function Home() {
-  return <h1>Hello Gatsby!</h1>
+  return (
+    <LayoutMain>
+      <h1>Hello Gatsby!</h1>
+      <p>Is this working?</p>
+    </LayoutMain>
+  );
 }
