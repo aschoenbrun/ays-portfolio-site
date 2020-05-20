@@ -2,6 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import { graphql } from "gatsby";
 import LayoutMain from "../components/LayoutMain";
+import PageIntro from "../components/PageIntro";
 
 const AboutMe = ({ data, location }) => {
   const { sanityPage: pageData } = data;
@@ -10,9 +11,7 @@ const AboutMe = ({ data, location }) => {
   return (
     <LayoutMain location={location}>
       <h1>{pageTitle}</h1>
-      <h3>
-        <ReactMarkdown source={intro} />
-      </h3>
+      <PageIntro>{intro}</PageIntro>
       <ReactMarkdown source={content} />
     </LayoutMain>
   );
