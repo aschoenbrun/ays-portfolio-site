@@ -1,16 +1,24 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import { graphql } from "gatsby";
 import LayoutMain from "../components/LayoutMain";
-export default function Home({ data, location }) {
+
+const AboutMe = ({ data, location }) => {
   const { sanityPage: pageData } = data;
+  const { pageTitle, intro, content } = pageData;
   console.log(pageData);
   return (
     <LayoutMain location={location}>
-      <h1>Hello Gatsby!</h1>
-      <p>Is this working?</p>
+      <h1>{pageTitle}</h1>
+      <h3>
+        <ReactMarkdown source={intro} />
+      </h3>
+      <ReactMarkdown source={content} />
     </LayoutMain>
   );
-}
+};
+
+export default AboutMe;
 
 export const query = graphql`
   query {

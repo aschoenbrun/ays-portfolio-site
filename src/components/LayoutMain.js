@@ -3,9 +3,11 @@ import Header from "./Header/Header";
 import { Helmet } from "react-helmet";
 import GlobalStyles from "./GlobalStyles";
 
-const LayoutMain = ({ children }) => {
+export const PageContext = React.createContext();
+
+const LayoutMain = ({ children, location }) => {
   return (
-    <>
+    <PageContext.Provider value={location}>
       <GlobalStyles />
       <div id="sticky-footer__body">
         <Helmet>
@@ -15,7 +17,7 @@ const LayoutMain = ({ children }) => {
         <main>{children}</main>
       </div>
       <footer id="site-footer">Footer</footer>
-    </>
+    </PageContext.Provider>
   );
 };
 

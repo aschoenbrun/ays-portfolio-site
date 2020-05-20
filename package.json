@@ -66,6 +66,7 @@
     "yup": "^0.28.5"
   },
   "devDependencies": {
+    "@hot-loader/react-dom": "^16.13.0",
     "babel-plugin-macros": "^2.8.0",
     "babel-plugin-styled-components": "^1.10.7",
     "http-proxy-middleware": "^1.0.3",
