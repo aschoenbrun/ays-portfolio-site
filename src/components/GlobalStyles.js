@@ -34,6 +34,13 @@ export const color = (color, variation) => {
 };
 
 const GlobalStyles = createGlobalStyle`
+
+  html, body {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* Sticky Footer */
+
   html, 
   body, 
   #___gatsby {
