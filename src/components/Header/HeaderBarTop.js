@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components/macro";
-import HeaderPortrait from "./HeaderPortrait";
 import { color } from "../GlobalStyles";
+import HeaderPortrait from "./HeaderPortrait";
+import HeaderNamePos from "./HeaderNamePos";
 
 const HeaderBarTopStyles = styled.div`
   position: relative;
@@ -21,6 +22,7 @@ const HeaderBarTop = () => {
   return (
     <HeaderBarTopStyles>
       <HeaderPortrait />
+      <HeaderNamePos />
     </HeaderBarTopStyles>
   );
 };

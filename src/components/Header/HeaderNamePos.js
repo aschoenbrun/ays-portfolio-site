@@ -1,0 +1,74 @@
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import styled from "styled-components/macro";
+import { color } from "../GlobalStyles";
+
+const roleSpacing = "1.1rem";
+
+const HeaderInfoWrapper = styled.div``;
+
+const HeaderNameStyle = styled.h2`
+  font-size: 27px;
+  font-weight: 300;
+  line-height: 1.1em;
+  margin: 0 0 5px;
+  @media screen and (min-width: 760px) {
+    font-size: 45px;
+    line-height: normal;
+  }
+`;
+
+const HeaderPosWrapperStyle = styled.h3`
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0;
+  color: ${color("tan", "lt")};
+  opacity: 0.75;
+  @media screen and (min-width: 760px) {
+    font-size: 14px;
+  }
+`;
+
+const HeaderPosStyle = styled.span`
+  display: block;
+  @media screen and (min-width: 760px) {
+    display: inline;
+    &:first-child {
+      padding-right: ${roleSpacing};
+      margin-right: ${roleSpacing};
+      border-right: 1px solid ${color("tan")};
+    }
+  }
+`;
+
+const HeaderPos = ({ titleArr }) => {
+  console.log(titleArr);
+  const titles = titleArr.map((title) => {
+    return <HeaderPosStyle>{title}</HeaderPosStyle>;
+  });
+  return <HeaderPosWrapperStyle>{titles}</HeaderPosWrapperStyle>;
+};
+
+const HeaderNamePos = () => {
+  const query = graphql`
+    query {
+      sanityMyInfo {
+        name
+        titles
+      }
+    }
+  `;
+
+  const name = useStaticQuery(query).sanityMyInfo.name;
+  const titles = useStaticQuery(query).sanityMyInfo.titles;
+
+  return (
+    <HeaderInfoWrapper>
+      <HeaderNameStyle>{name}</HeaderNameStyle>
+      <HeaderPos titleArr={titles} />
+    </HeaderInfoWrapper>
+  );
+};
+
+export default HeaderNamePos;

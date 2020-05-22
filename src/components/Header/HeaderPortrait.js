@@ -33,15 +33,10 @@ const HeaderPortrait = () => {
     }
   `;
 
-  const staticQuery = useStaticQuery(query);
-
-  const portraitUrl = staticQuery.sanityMyInfo.portrait.cloudinaryUrlField;
-
-  console.log(portraitUrl);
+  // prettier-ignore
+  const portraitUrl = useStaticQuery(query).sanityMyInfo.portrait.cloudinaryUrlField;
 
   const portrait = cldnyUrlTrans(portraitUrl, "w_300,h_300,c_fill,f_auto");
-
-  console.log(portrait);
 
   return <HeaderPortraitStyle portrait={portrait} />;
 };
