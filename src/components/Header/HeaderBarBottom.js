@@ -44,6 +44,7 @@ const HeaderBarBottom = () => {
         href = `tel:${value}`;
         break;
       case "linkedIn":
+        // TODO: Remove HTTP or HTTPS
         href = `${value}`;
         break;
       default:
