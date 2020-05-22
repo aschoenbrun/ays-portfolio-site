@@ -28,9 +28,15 @@ const HeaderPosWrapperStyle = styled.h3`
   @media screen and (min-width: 760px) {
     font-size: 14px;
   }
+  ul {
+    display: block;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
 `;
 
-const HeaderPosStyle = styled.span`
+const HeaderPosStyle = styled.li`
   display: block;
   @media screen and (min-width: 760px) {
     display: inline;
@@ -45,9 +51,13 @@ const HeaderPosStyle = styled.span`
 const HeaderPos = ({ titleArr }) => {
   console.log(titleArr);
   const titles = titleArr.map((title) => {
-    return <HeaderPosStyle>{title}</HeaderPosStyle>;
+    return <HeaderPosStyle key={title}>{title}</HeaderPosStyle>;
   });
-  return <HeaderPosWrapperStyle>{titles}</HeaderPosWrapperStyle>;
+  return (
+    <HeaderPosWrapperStyle>
+      <ul>{titles}</ul>
+    </HeaderPosWrapperStyle>
+  );
 };
 
 const HeaderNamePos = () => {
