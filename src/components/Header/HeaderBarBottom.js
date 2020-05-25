@@ -2,6 +2,7 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components/macro";
 import { color } from "../GlobalStyles";
+import { HeaderFooterText } from "../GlobalStyles";
 
 const HeaderBarBottomStyles = styled.div`
   background-color: ${color("tan", "dk")};
@@ -16,6 +17,8 @@ const HeaderContactInfoStyles = styled.ul`
   justify-content: center;
   align-items: center;
   padding: 20px;
+  margin: 0;
+  list-style-type: none;
   @media screen and (min-width: 760px) {
     flex-direction: row;
   }
@@ -35,26 +38,29 @@ const HeaderBarBottom = () => {
   const contactArr = Object.entries(useStaticQuery(query).sanityMyInfo);
   console.log(contactArr);
   const contactList = contactArr.map(([key, value]) => {
-    let href;
+    let href, niceVal;
     switch (key) {
       case "email":
         href = `mailto:${value}`;
+        niceVal = value;
         break;
       case "phone":
         href = `tel:${value}`;
+        niceVal = value;
         break;
       case "linkedIn":
-        // TODO: Remove HTTP or HTTPS
         href = `${value}`;
+        niceVal = value.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
         break;
       default:
         href = null;
+        niceVal = null;
     }
 
     return (
-      <li key={key}>
-        <a href={href}>{value}</a>
-      </li>
+      <HeaderFooterText as="li" key={key}>
+        <a href={href}>{niceVal}</a>
+      </HeaderFooterText>
     );
   });
 

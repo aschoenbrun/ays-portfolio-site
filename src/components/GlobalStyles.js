@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components/macro";
+import styled, { createGlobalStyle } from "styled-components/macro";
 
 const colors = {
   blue: {
@@ -35,8 +35,21 @@ export const color = (color, variation) => {
 
 const GlobalStyles = createGlobalStyle`
 
-  html, body {
+  html, body, p, h1, h2, h3, h4, h5, h6 {
     font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a {
+    color: ${color("yellow")};
+    text-decoration: none;
+    text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.75);
+    transition: color 0.25s ease;
+    &:hover,
+    &:focus {
+      color: ${color("yellow", "lt")};
+    }
   }
 
   /* Sticky Footer */
@@ -62,6 +75,28 @@ const GlobalStyles = createGlobalStyle`
 
   #site-footer {
     flex-shrink: 0;
+  }
+`;
+
+export const HeaderFooterText = styled.span`
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 1em;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 5px 10px 5px;
+  &:last-child {
+    margin-right: 0;
+  }
+  @media screen and (min-width: 760px) {
+    margin: 0 10px 0 0;
+    padding-right: 10px;
+    border-right: 1px solid ${color("blue")};
+    &:last-child {
+      margin-right: 0;
+      padding-right: 0;
+      border-right: none;
+    }
   }
 `;
 
