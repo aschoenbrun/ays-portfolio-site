@@ -1,5 +1,5 @@
 import React from "react";
-import LayoutMain from "../components/LayoutMain";
+import LayoutMain from "../components/Layouts/LayoutMain";
 
 const NotFound404 = () => {
   return (

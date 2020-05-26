@@ -9,6 +9,21 @@ const HeaderBarBottomStyles = styled.div`
   position: relative;
   z-index: 900;
   box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
+  &::after {
+    content: "";
+    background-image: url("https://media.giphy.com/media/mG2pQXAWNl4Vt77Kef/giphy.gif");
+    mix-blend-mode: multiply;
+    background-size: cover;
+    background-position: center calc(50% + 108px);
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+  }
 `;
 
 const HeaderContactInfoStyles = styled.ul`

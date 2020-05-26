@@ -16,6 +16,21 @@ const HeaderBarTopStyles = styled.div`
   @media screen and (min-width: 420px) {
     justify-content: center;
   }
+  &::after {
+    content: "";
+    background-image: url("https://media.giphy.com/media/mG2pQXAWNl4Vt77Kef/giphy.gif");
+    mix-blend-mode: difference;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+  }
 `;
 
 const HeaderBarTop = () => {

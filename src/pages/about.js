@@ -1,7 +1,8 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { graphql } from "gatsby";
-import LayoutMain from "../components/LayoutMain";
+import { PageTitle } from "../components/GlobalStyles";
+import LayoutMain from "../components/Layouts/LayoutMain";
 import PageIntro from "../components/PageIntro";
 
 const AboutMe = ({ data, location }) => {
@@ -10,7 +11,7 @@ const AboutMe = ({ data, location }) => {
   console.log(pageData);
   return (
     <LayoutMain location={location}>
-      <h1>{pageTitle}</h1>
+      <PageTitle>{pageTitle}</PageTitle>
       <PageIntro>{intro}</PageIntro>
       <ReactMarkdown source={content} />
     </LayoutMain>
