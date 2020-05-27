@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { color } from "../GlobalStyles";
+import HeaderBarVideoBG from "./HeaderBarVideoBG";
 import HeaderPortrait from "./HeaderPortrait";
 import HeaderNamePos from "./HeaderNamePos";
 
@@ -16,26 +17,12 @@ const HeaderBarTopStyles = styled.div`
   @media screen and (min-width: 420px) {
     justify-content: center;
   }
-  &::after {
-    content: "";
-    background-image: url("https://media.giphy.com/media/mG2pQXAWNl4Vt77Kef/giphy.gif");
-    mix-blend-mode: difference;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.3;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-  }
 `;
 
 const HeaderBarTop = () => {
   return (
     <HeaderBarTopStyles>
+      <HeaderBarVideoBG opacity="0.5" blendMode="color-burn" />
       <HeaderPortrait />
       <HeaderNamePos />
     </HeaderBarTopStyles>
