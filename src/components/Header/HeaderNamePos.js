@@ -49,7 +49,6 @@ const HeaderPosStyle = styled.li`
 `;
 
 const HeaderPos = ({ titleArr }) => {
-  console.log(titleArr);
   const titles = titleArr.map((title) => {
     return <HeaderPosStyle key={title}>{title}</HeaderPosStyle>;
   });

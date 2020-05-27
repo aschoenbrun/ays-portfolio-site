@@ -36,7 +36,6 @@ const HeaderBarBottom = () => {
   `;
 
   const contactArr = Object.entries(useStaticQuery(query).sanityMyInfo);
-  console.log(contactArr);
   const contactList = contactArr.map(([key, value]) => {
     let href, niceVal;
     switch (key) {
