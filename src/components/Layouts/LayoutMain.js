@@ -41,7 +41,6 @@ const ContentStyles = styled.main`
 `;
 
 const LayoutMain = ({ children, location }) => {
-  console.log(location);
   return (
     <PageContext.Provider value={location}>
       <GlobalStyles />

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import PageContext from "../Layouts/LayoutMain";
+import { PageContext } from "../Layouts/LayoutMain";
 
 const HeaderNav = () => {
   const pageContext = useContext(PageContext);
