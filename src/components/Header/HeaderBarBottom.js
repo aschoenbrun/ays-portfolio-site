@@ -22,6 +22,12 @@ const HeaderContactInfoStyles = styled.ul`
   @media screen and (min-width: 760px) {
     flex-direction: row;
   }
+  .headroom--scrolled & {
+    padding: 13px;
+    li {
+      font-size: 10px;
+    }
+  }
 `;
 
 const HeaderBarBottom = () => {

@@ -5,6 +5,7 @@ import styled from "styled-components/macro";
 import { color } from "../GlobalStyles";
 
 const headerImgDims = "115px";
+const fxdHeaderImgDims = "50px";
 
 const HeaderPortraitStyle = styled.div`
   height: ${headerImgDims};
@@ -19,6 +20,13 @@ const HeaderPortraitStyle = styled.div`
   background-image: url("${(props) => props.portrait}");
   @media screen and (min-width: 760px) {
     margin-right: 20px;
+  }
+  .headroom--scrolled & {
+    height: ${fxdHeaderImgDims};
+    width: ${fxdHeaderImgDims};
+    margin-bottom: -5px;
+    margin-right: 15px;
+    box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
   }
 `;
 
