@@ -82,7 +82,6 @@ const HeaderNavItemStyles = styled.li`
 
 const HeaderNavItem = ({ navItem }) => {
   const pageContext = useContext(PageContext);
-  console.log(pageContext);
   return (
     <HeaderNavItemStyles>
       <Link to={`/${navItem.uri}/`}>{navItem.name}</Link>

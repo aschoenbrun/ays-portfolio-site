@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import { Helmet } from "react-helmet";
 import GlobalStyles, { color } from "../GlobalStyles";
 import styled from "styled-components/macro";
@@ -51,7 +52,7 @@ const LayoutMain = ({ children, location }) => {
         <Header />
         <ContentStyles>{children}</ContentStyles>
       </div>
-      <footer id="site-footer">Footer</footer>
+      <Footer id="site-footer" />
     </PageContext.Provider>
   );
 };
