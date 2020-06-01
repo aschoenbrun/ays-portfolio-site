@@ -27,6 +27,14 @@ const FooterBuiltWithStyles = styled.div`
     width: auto;
     margin-right: 5px;
   }
+  h3 {
+    display: block;
+    width: 100%;
+    font-size: 17px;
+    margin: 0;
+    padding-right: 0;
+    color: ${color("tan", "lt")};
+  }
 `;
 
 const FooterBuiltWith = () => {
@@ -70,6 +78,7 @@ const FooterBuiltWith = () => {
 
   return (
     <FooterBuiltWithStyles>
+      <HeaderFooterText as="h3">Built with</HeaderFooterText>
       <ul>{builtWithList}</ul>
     </FooterBuiltWithStyles>
   );

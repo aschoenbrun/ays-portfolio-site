@@ -1,7 +1,8 @@
 import React from "react";
 import FooterBuiltWith from "./FooterBuiltWith";
+import RepoLink from "../RepoLink";
 import styled from "styled-components/macro";
-import { color, HeaderFooterText } from "../GlobalStyles";
+import { color } from "../GlobalStyles";
 
 const FooterBarTopStyles = styled.div`
   background-color: ${color("tan", "dk")};
@@ -15,23 +16,16 @@ const FooterBarTopStyles = styled.div`
       margin-top: 0px;
     }
   }
-  h3 {
-    display: block;
-    width: 100%;
-    font-size: 17px;
-    margin: 0;
-    padding-right: 0;
-    color: ${color("tan", "dk")};
-  }
 `;
 
 const FooterBarTop = () => {
   return (
     <FooterBarTopStyles>
       <FooterBuiltWith />
-      <HeaderFooterText as="h3">Built with</HeaderFooterText>
-      {/* REPO LINK */}
-      {/* FOOTER BOTTOM > COPY */}
+      <RepoLink
+        appBuilt={"website"}
+        repoUrl="https://github.com/aschoenbrun/ays-portfolio-site"
+      />
     </FooterBarTopStyles>
   );
 };

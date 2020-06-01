@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { color, HeaderFooterText } from "../GlobalStyles";
 import FooterBarTop from "./FooterBarTop";
+import FooterBarBottom from "./FooterBarBottom";
 
 const FooterStyles = styled.footer`
   margin-top: 75px;
@@ -12,6 +12,7 @@ const Footer = () => {
   return (
     <FooterStyles>
       <FooterBarTop />
+      <FooterBarBottom />
     </FooterStyles>
   );
 };
