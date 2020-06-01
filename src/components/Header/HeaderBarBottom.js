@@ -13,11 +13,13 @@ const HeaderBarBottomStyles = styled.div`
 
 const HeaderContactInfoStyles = styled.ul`
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
   margin: 0;
+  z-index: 1;
   list-style-type: none;
   @media screen and (min-width: 760px) {
     flex-direction: row;
@@ -28,6 +30,18 @@ const HeaderContactInfoStyles = styled.ul`
       font-size: 10px;
     }
   }
+`;
+
+const HeaderBottmBgImg = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url("https://res.cloudinary.com/aschoen/image/upload/c_fill,f_auto,g_center,h_60,q_auto,w_1920/v1591042503/AYS%20Portfolio%20Site%20Images/wall-1846946_1920---I_ukff5z.jpg");
+  mix-blend-mode: multiply;
+  opacity: 0.05;
 `;
 
 const HeaderBarBottom = () => {
@@ -65,6 +79,7 @@ const HeaderBarBottom = () => {
     return (
       <HeaderFooterText as="li" key={key}>
         <a href={href}>{niceVal}</a>
+        <HeaderBottmBgImg />
       </HeaderFooterText>
     );
   });

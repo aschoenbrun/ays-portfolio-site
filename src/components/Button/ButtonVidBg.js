@@ -24,7 +24,7 @@ const ButtonVidBg = () => {
   return (
     <ButtonVidBgStyles>
       <ReactPlayer
-        url="https://res.cloudinary.com/aschoen/video/upload/c_crop,f_auto,h_150,q_auto,w_800/v1591035165/AYS%20Portfolio%20Site%20Images/Background%20Videos/Triangles_-_7257_vfhb9h.mp4"
+        url="https://res.cloudinary.com/aschoen/video/upload/c_fill,f_auto,h_75,q_auto,w_500/v1591035165/AYS%20Portfolio%20Site%20Images/Background%20Videos/Triangles_-_7257_vfhb9h.mp4"
         className="react-player"
         playing
         muted

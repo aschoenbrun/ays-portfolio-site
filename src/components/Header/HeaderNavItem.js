@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { Link } from "gatsby";
 import { PageContext } from "../Layouts/LayoutMain";
 import styled from "styled-components/macro";
 import { color } from "../GlobalStyles";
+import ButtonVidBG from "../Button/ButtonVidBg";
 
 const HeaderNavItemStyles = styled.li`
   display: block;
+  position: relative;
   text-transform: uppercase;
   background-color: ${color("yellow")};
   width: 100%;
@@ -52,6 +54,10 @@ const HeaderNavItemStyles = styled.li`
     @media screen and (min-width: 960px) {
       padding: 13px 15px 10px;
     }
+    a {
+      position: relative;
+      z-index: 1;
+    }
     &:hover,
     &:focus {
       color: ${color("tan", "dk")};
@@ -78,13 +84,40 @@ const HeaderNavItemStyles = styled.li`
   button {
     width: 100%;
   }
+  span {
+    position: relative;
+    z-index: 1;
+  }
+  .react-player video {
+    width: auto !important;
+    height: 40px !important;
+  }
 `;
 
 const HeaderNavItem = ({ navItem }) => {
+  const hoverClassRef = useRef("");
+  const [hover, setHover] = useState(false);
+
+  useEffect(() => {
+    hover
+      ? hoverClassRef.current.classList.add("hover")
+      : hoverClassRef.current.classList.remove("hover");
+  }, [hover]);
   const pageContext = useContext(PageContext);
+  console.log(pageContext);
   return (
-    <HeaderNavItemStyles>
-      <Link to={`/${navItem.uri}/`}>{navItem.name}</Link>
+    <HeaderNavItemStyles
+      ref={hoverClassRef}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <Link
+        to={`/${navItem.uri}/`}
+        className={`/${navItem.uri}` === pageContext.pathname ? "active" : null}
+      >
+        <ButtonVidBG />
+        <span>{navItem.name}</span>
+      </Link>
     </HeaderNavItemStyles>
   );
 };

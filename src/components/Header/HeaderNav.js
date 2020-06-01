@@ -26,6 +26,8 @@ const navItems = navItemArr.map((navItem) => {
   return <HeaderNavItem key={navItem.name} navItem={navItem} />;
 });
 
+// TODO: Check nav cross-browser compatability
+
 const HeaderNavStyles = styled.nav`
   ul {
     position: absolute;
@@ -41,6 +43,7 @@ const HeaderNavStyles = styled.nav`
     padding: 0;
     width: 200px;
     transition: 0.5s;
+    margin: 0 1px;
     @media screen and (min-width: 960px) {
       flex-direction: row;
       box-shadow: none;
