@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import Button from "./Button/Button";
 
 const RepoLink = ({ appBuilt, repoUrl }) => {
   const githubButtonText = appBuilt

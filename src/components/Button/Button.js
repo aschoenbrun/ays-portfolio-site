@@ -1,10 +1,11 @@
-import React from "react";
-import { Link } from "gatsby";
+import React, { useRef, useEffect, useState } from "react";
+import ButtonVidBg from "./ButtonVidBg";
 import { Image, Transformation } from "cloudinary-react";
 import styled from "styled-components/macro";
-import { color } from "./GlobalStyles";
+import { color } from "../GlobalStyles";
 
-const ButtonStyles = styled(Link)`
+const ButtonStyles = styled.a`
+  position: relative;
   color: ${color("tan", "dk")};
   background-color: ${color("yellow")};
   border: none;
@@ -20,18 +21,29 @@ const ButtonStyles = styled(Link)`
   box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
   text-shadow: none;
   cursor: pointer;
-  transition: 0.25s ease-out;
+  overflow: hidden;
+  .vid-BG {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+  img,
+  span {
+    position: relative;
+    z-index: 1;
+  }
   img {
     height: 20px;
     width: auto;
     margin-right: 7px;
   }
   span {
-    margin-top: 20px;
+    margin-top: 2px;
   }
   &:hover,
   &:focus {
-    background-color: ${color("yellow", "lt")};
     color: ${color("tan", "dk")};
     box-shadow: 0px 0.25px 2px 0px rgba(0, 0, 0, 0.5);
   }
@@ -41,8 +53,24 @@ const ButtonStyles = styled(Link)`
 `;
 
 const Button = ({ url, target, rel, iconPubId, text }) => {
+  const hoverClassRef = useRef("");
+  const [hover, setHover] = useState(false);
+
+  useEffect(() => {
+    hover
+      ? hoverClassRef.current.classList.add("hover")
+      : hoverClassRef.current.classList.remove("hover");
+  }, [hover]);
+
   return (
-    <ButtonStyles to={url} target={target} rel={rel}>
+    <ButtonStyles
+      ref={hoverClassRef}
+      href={url}
+      target={target}
+      rel={rel}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       {iconPubId && (
         <Image cloudName="aschoen" alt={text} publicId={iconPubId}>
           <Transformation
@@ -56,6 +84,7 @@ const Button = ({ url, target, rel, iconPubId, text }) => {
         </Image>
       )}
       <span>{text}</span>
+      <ButtonVidBg />
     </ButtonStyles>
   );
 };
