@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import { PageTitle } from "../components/GlobalStyles";
 import LayoutMain from "../components/Layouts/LayoutMain";
 import PageIntro from "../components/PageIntro";
+import Button from "../components/Button/Button";
 
 const Resume = ({ data, location }) => {
   const { sanityResume: pageData } = data;
@@ -15,6 +16,7 @@ const Resume = ({ data, location }) => {
     <LayoutMain location={location}>
       <PageTitle>{pageTitle}</PageTitle>
       <PageIntro>{resumeIntro.introText}</PageIntro>
+      <Button text="Download Resume" />
     </LayoutMain>
   );
 };

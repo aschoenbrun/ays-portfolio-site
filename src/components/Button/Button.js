@@ -22,17 +22,11 @@ const ButtonStyles = styled.a`
   text-shadow: none;
   cursor: pointer;
   overflow: hidden;
-  .vid-BG {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-  }
   img,
   span {
     position: relative;
     z-index: 1;
+    max-width: 290px;
   }
   img {
     height: 20px;
@@ -65,8 +59,8 @@ const Button = ({ url, target, rel, iconPubId, text }) => {
   return (
     <ButtonStyles
       ref={hoverClassRef}
-      href={url}
-      target={target}
+      href={url ? url : "#"}
+      target={target ? target : "_blank"}
       rel={rel}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}

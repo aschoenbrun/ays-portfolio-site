@@ -26,7 +26,6 @@ const HeaderNavItemStyles = styled.li`
   }
   &:hover,
   &:focus {
-    background-color: ${color("yellow", "lt")};
     @media screen and (min-width: 960px) {
       margin-bottom: 0;
       box-shadow: 0px 0.25px 2px 0px rgba(0, 0, 0, 0.5);
@@ -96,10 +95,6 @@ const HeaderNavItemStyles = styled.li`
     position: relative;
     z-index: 1;
   }
-  .react-player video {
-    width: auto !important;
-    height: 40px !important;
-  }
 `;
 
 const HeaderNavItem = ({ navItem }) => {
@@ -118,7 +113,7 @@ const HeaderNavItem = ({ navItem }) => {
       ref={hoverClassRef}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`/${navItem.uri}` === pageContext.pathname ? "active" : null}
+      className={`/${navItem.uri}/` === pageContext.pathname ? "active" : null}
     >
       <Link to={`/${navItem.uri}/`}>
         <ButtonVidBG />
