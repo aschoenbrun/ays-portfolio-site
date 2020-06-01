@@ -51,12 +51,10 @@ const HeaderNavItemStyles = styled.li`
     text-align: center;
     text-shadow: none;
     transition: 0.5s;
+    position: relative;
+    z-index: 1;
     @media screen and (min-width: 960px) {
       padding: 13px 15px 10px;
-    }
-    a {
-      position: relative;
-      z-index: 1;
     }
     &:hover,
     &:focus {
@@ -70,13 +68,23 @@ const HeaderNavItemStyles = styled.li`
         padding: 18px 15px 9px;
       }
     }
-    &.active {
-      &,
-      &:hover,
-      &:focus {
+  }
+  &.active {
+    &,
+    &:hover,
+    &:focus {
+      box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
+      @media screen and (min-width: 960px) {
+        box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
+      }
+      a,
+      button {
         @media screen and (min-width: 960px) {
           padding: 17px 15px 10px;
           background-color: ${color("orange", "greyLt")};
+        }
+        div {
+          opacity: 0;
         }
       }
     }
@@ -110,11 +118,9 @@ const HeaderNavItem = ({ navItem }) => {
       ref={hoverClassRef}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      className={`/${navItem.uri}` === pageContext.pathname ? "active" : null}
     >
-      <Link
-        to={`/${navItem.uri}/`}
-        className={`/${navItem.uri}` === pageContext.pathname ? "active" : null}
-      >
+      <Link to={`/${navItem.uri}/`}>
         <ButtonVidBG />
         <span>{navItem.name}</span>
       </Link>
