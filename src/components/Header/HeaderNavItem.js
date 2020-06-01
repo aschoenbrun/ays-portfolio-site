@@ -107,7 +107,6 @@ const HeaderNavItem = ({ navItem }) => {
       : hoverClassRef.current.classList.remove("hover");
   }, [hover]);
   const pageContext = useContext(PageContext);
-  console.log(pageContext);
   return (
     <HeaderNavItemStyles
       ref={hoverClassRef}

@@ -55,8 +55,6 @@ const FooterBuiltWith = () => {
 
   const builtWithItemArr = useStaticQuery(query).sanitySiteInfo.builtWith;
 
-  console.log(builtWithItemArr);
-
   const builtWithList = builtWithItemArr.map((builtWithItem) => {
     return (
       <HeaderFooterText as="li" key={builtWithItem._key}>

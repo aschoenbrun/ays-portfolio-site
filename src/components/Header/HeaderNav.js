@@ -22,7 +22,6 @@ const navItemArr = [
 ];
 
 const navItems = navItemArr.map((navItem) => {
-  console.log(navItem.name);
   return <HeaderNavItem key={navItem.name} navItem={navItem} />;
 });
 

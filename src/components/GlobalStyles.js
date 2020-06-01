@@ -125,4 +125,8 @@ export const HeaderFooterText = styled.span`
   }
 `;
 
+export const PageSection = styled.section`
+  margin-bottom: 50px;
+`;
+
 export default GlobalStyles;
