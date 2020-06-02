@@ -31,6 +31,7 @@
     "@sendgrid/mail": "^7.1.0",
     "axios": "^0.19.2",
     "babel-eslint": "^10.1.0",
+    "camelcase": "^6.0.0",
     "cloudinary-react": "^1.5.0",
     "dotenv": "^8.2.0",
     "env-cmd": "^10.1.0",

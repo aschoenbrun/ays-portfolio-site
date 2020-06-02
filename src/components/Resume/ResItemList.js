@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { color } from "../GlobalStyles";
+import ResItemSubListItems from "./ResItemSubListItems";
 
 const ResItemListHeader = styled.h3``;
 
@@ -26,7 +27,6 @@ const ResItemList = ({ resSection }) => {
   const resSubSection = resSection.resumeSubSections;
 
   return resSubSection.map((item) => {
-    console.log(item);
     let itemTitle;
     switch (item.__typename) {
       case "SanityResumeSkill":
@@ -66,8 +66,8 @@ const ResItemList = ({ resSection }) => {
           }
         };
         const infoComp = <InfoStyles>{infoProcessed(info)}</InfoStyles>;
-        const infoDiv = <InfoDivStyles>&nbsp;&#47;&#47;&nbsp;</InfoDivStyles>;
-        const infoTo = <InfoToStyles>&nbsp;&rsaquo;&nbsp;</InfoToStyles>;
+        const infoDiv = <InfoDivStyles>&#47;&#47;</InfoDivStyles>;
+        const infoTo = <InfoToStyles>&rsaquo;</InfoToStyles>;
         return (
           <>
             {info && infoComp}
@@ -99,7 +99,9 @@ const ResItemList = ({ resSection }) => {
         <ResListItemInfo>
           <ItemInfo />
         </ResListItemInfo>
-        <ResItemSubList>{/* <ResItemSubList/> */}</ResItemSubList>
+        <ResItemSubList>
+          <ResItemSubListItems resListItem={item} itemTitle={itemTitle} />
+        </ResItemSubList>
       </ResItemListItem>
     );
   });
