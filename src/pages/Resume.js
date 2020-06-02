@@ -4,7 +4,7 @@ import { PageTitle } from "../components/GlobalStyles";
 import LayoutMain from "../components/Layouts/LayoutMain";
 import PageIntro from "../components/PageIntro";
 import Button from "../components/Button/Button";
-import ResList from "../components/Resume/ResList";
+import ResSecList from "../components/Resume/ResSecList";
 
 export const ResListContext = React.createContext();
 
@@ -19,7 +19,7 @@ const Resume = ({ data, location }) => {
         <PageTitle>{pageTitle}</PageTitle>
         <PageIntro>{resumeIntro.introText}</PageIntro>
         <Button text="Download Resume" />
-        <ResList />
+        <ResSecList />
       </LayoutMain>
     </ResListContext.Provider>
   );
