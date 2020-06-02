@@ -9,8 +9,6 @@ const ResItemSubListItems = ({ resListItem, itemTitle }) => {
   console.log(resListItem);
   const { accomplishments, listItems, email, phone, __typename } = resListItem;
 
-  const ccItemTitle = camelCase(itemTitle);
-
   const accompList =
     accomplishments &&
     accomplishments.map((accomp) => {
