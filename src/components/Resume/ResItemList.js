@@ -17,12 +17,12 @@ const ResItemSubList = styled.ul`
 `;
 
 const ResItemList = ({ resSection }) => {
-  const resName = resSection.name;
+  const resSecName = resSection.name;
+  const resSecId = resSection._id;
   const resSubSection = resSection.resumeSubSections;
 
-  console.log(resSection);
-
   return resSubSection.map((item) => {
+    console.log(item);
     let itemTitle;
     switch (item.__typename) {
       case "SanityResumeSkill":
@@ -39,6 +39,8 @@ const ResItemList = ({ resSection }) => {
         itemTitle = null;
     }
 
+    const itemKey = item._key;
+
     const ItemInfo = () => {
       const { location, company, dateStart, dateEnd, current } = item;
 
@@ -53,7 +55,7 @@ const ResItemList = ({ resSection }) => {
     };
 
     return (
-      <ResItemListItem key={resSubSection._key}>
+      <ResItemListItem key={itemKey}>
         <ResItemListHeader>{itemTitle}</ResItemListHeader>
         <ResListItemInfo>
           <ItemInfo />
