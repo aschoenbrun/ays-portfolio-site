@@ -8,7 +8,11 @@ const ResItemListItem = styled.li``;
 
 const ResListItemInfo = styled.p``;
 
-const InfoDiv = styled.span``;
+const InfoStyles = styled.span``;
+
+const InfoDivStyles = styled.span``;
+
+const InfoToStyles = styled.span``;
 
 const ResItemSubList = styled.ul`
   list-style-type: none;
@@ -42,14 +46,49 @@ const ResItemList = ({ resSection }) => {
     const itemKey = item._key;
 
     const ItemInfo = () => {
-      const { location, company, dateStart, dateEnd, current } = item;
+      const { location, company, dateStart, dateEnd, currentPosition } = item;
 
-      if (location || company || dateStart || dateEnd || current) {
-        return `${company && `${company} ${(<InfoDiv />)}`}
-          ${location && `${location.state}, ${location.city} ${(<InfoDiv />)}`}
-          ${dateStart && `${dateStart} > `}
-          ${dateEnd && `${dateEnd} ${(<InfoDiv />)}`}
-          ${current && `Present`}`;
+      const info = (info, div, to) => {
+        const infoProcessed = () => {
+          switch (info) {
+            case company:
+              return company;
+            case location:
+              return `${location.city}, ${location.state}`;
+            case dateStart:
+              return dateStart;
+            case dateEnd:
+              return dateEnd;
+            case currentPosition:
+              return "Present";
+            default:
+              return null;
+          }
+        };
+        const infoComp = <InfoStyles>{infoProcessed(info)}</InfoStyles>;
+        const infoDiv = <InfoDivStyles>&nbsp;&#47;&#47;&nbsp;</InfoDivStyles>;
+        const infoTo = <InfoToStyles>&nbsp;&rsaquo;&nbsp;</InfoToStyles>;
+        return (
+          <>
+            {info && infoComp}
+            {info && div && infoDiv}
+            {info && to && infoTo}
+          </>
+        );
+      };
+
+      if (location || company || dateStart || dateEnd || currentPosition) {
+        return (
+          <>
+            {info(company, true)}
+            {item.__typename === "SanityResumeEducation"
+              ? info(location)
+              : info(location, true)}
+            {info(dateStart, false, true)}
+            {info(dateEnd)}
+            {info(currentPosition)}
+          </>
+        );
       }
       return null;
     };
