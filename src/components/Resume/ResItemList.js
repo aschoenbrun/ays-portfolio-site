@@ -99,7 +99,7 @@ const ResItemList = ({ resSection, dir }) => {
     };
 
     return (
-      <ResItemListItem key={itemKey}>
+      <ResItemListItem key={itemKey} dir={dir}>
         <ResItemListHeader>{itemTitle}</ResItemListHeader>
         <ResListItemInfo>
           <ItemInfo />
