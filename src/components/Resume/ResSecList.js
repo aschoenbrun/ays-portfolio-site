@@ -19,6 +19,7 @@ const ResItemListUl = styled.ul`
   margin: 0 0 10px;
   display: flex;
   flex-direction: ${(props) => props.dir.secList};
+  flex-wrap: wrap;
 `;
 
 const ResSubList = () => {
@@ -30,14 +31,29 @@ const ResSubList = () => {
     let dir;
     switch (resSection.name) {
       case "Skills":
-        dir = { secList: "column", secItemList: "row" };
+        dir = {
+          secList: "column",
+          secItemList: "row",
+          marginR: "0",
+          ulMargin: "0",
+        };
         break;
       case "Education":
       case "References":
-        dir = { secList: "row", secItemList: "row" };
+        dir = {
+          secList: "row",
+          secItemList: "row",
+          marginR: "25px",
+          ulMargin: "0 0 10px",
+        };
         break;
       default:
-        dir = { secList: "column", secItemList: "column" };
+        dir = {
+          secList: "column",
+          secItemList: "column",
+          marginR: "0",
+          ulMargin: "0",
+        };
     }
 
     return (

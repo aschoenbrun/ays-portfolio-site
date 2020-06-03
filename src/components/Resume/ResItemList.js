@@ -4,7 +4,9 @@ import ResItemSubListItems from "./ResItemSubListItems";
 
 const ResItemListHeader = styled.h3``;
 
-const ResItemListItem = styled.li``;
+const ResItemListItem = styled.li`
+  margin-right: ${(props) => props.dir.marginR};
+`;
 
 const ResListItemInfo = styled.p``;
 
@@ -20,6 +22,7 @@ const ResItemSubListUl = styled.ul`
   margin: 0 0 10px;
   display: flex;
   flex-direction: ${(props) => props.dir.secItemList};
+  margin: ${(props) => props.dir.ulMargin};
 `;
 
 const ResItemList = ({ resSection, dir }) => {
