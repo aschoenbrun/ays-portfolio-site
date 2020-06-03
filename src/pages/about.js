@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { graphql } from "gatsby";
-import { PageTitle } from "../components/GlobalStyles";
+import PageTitle from "../components/PageTitle";
 import LayoutMain from "../components/Layouts/LayoutMain";
 import PageIntro from "../components/PageIntro";
 

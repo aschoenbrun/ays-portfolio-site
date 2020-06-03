@@ -78,24 +78,6 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export const PageTitle = styled.h1`
-  color: ${color("blue")};
-  margin: 0 0 40px;
-  font-size: 40px;
-  font-weight: 100;
-  text-align: center;
-  &:after {
-    content: "";
-    display: block;
-    margin: 40px auto 0;
-    width: 150px;
-    border-bottom: 1px solid ${color("tan", "lt")};
-  }
-  span {
-    display: block;
-  }
-`;
-
 export const PageSubTitle = styled.h2`
   color: ${color("tan")};
   margin: 0 0 40px;

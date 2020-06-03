@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { PageTitle } from "../components/GlobalStyles";
+import PageTitle from "../components/PageTitle";
 import LayoutMain from "../components/Layouts/LayoutMain";
 import PageIntro from "../components/PageIntro";
 import Button from "../components/Button/Button";
