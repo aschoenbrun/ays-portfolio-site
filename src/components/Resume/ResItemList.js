@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { color } from "../GlobalStyles";
 import ResItemSubListItems from "./ResItemSubListItems";
 
 const ResItemListHeader = styled.h3``;
@@ -15,16 +14,19 @@ const InfoDivStyles = styled.span``;
 
 const InfoToStyles = styled.span``;
 
-const ResItemSubList = styled.ul`
+const ResItemSubListUl = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0 0 10px;
+  display: flex;
+  flex-direction: ${(props) => props.dir.secItemList};
 `;
 
-const ResItemList = ({ resSection }) => {
+const ResItemList = ({ resSection, dir }) => {
   const resSecName = resSection.name;
   const resSecId = resSection._id;
   const resSubSection = resSection.resumeSubSections;
+  console.log(dir);
 
   return resSubSection.map((item) => {
     let itemTitle;
@@ -99,9 +101,9 @@ const ResItemList = ({ resSection }) => {
         <ResListItemInfo>
           <ItemInfo />
         </ResListItemInfo>
-        <ResItemSubList>
+        <ResItemSubListUl dir={dir}>
           <ResItemSubListItems resListItem={item} itemTitle={itemTitle} />
-        </ResItemSubList>
+        </ResItemSubListUl>
       </ResItemListItem>
     );
   });

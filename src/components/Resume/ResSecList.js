@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import styled from "styled-components/macro";
-import { color } from "../GlobalStyles";
 import { ResListContext } from "../../pages/resume";
 import ResItemList from "./ResItemList";
 
@@ -18,16 +17,34 @@ const ResItemListUl = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0 0 10px;
+  display: flex;
+  flex-direction: ${(props) => props.dir.secList};
 `;
 
 const ResSubList = () => {
   const resSections = useContext(ResListContext);
+
   const list = resSections.map((resSection) => {
+    console.log(resSection);
+
+    let dir;
+    switch (resSection.name) {
+      case "Skills":
+        dir = { secList: "column", secItemList: "row" };
+        break;
+      case "Education":
+      case "References":
+        dir = { secList: "row", secItemList: "row" };
+        break;
+      default:
+        dir = { secList: "column", secItemList: "column" };
+    }
+
     return (
       <ResSection key={resSection.name}>
         <ResSecTitle>{resSection.name}</ResSecTitle>
-        <ResItemListUl>
-          <ResItemList resSection={resSection} />
+        <ResItemListUl dir={dir}>
+          <ResItemList resSection={resSection} dir={dir} />
         </ResItemListUl>
       </ResSection>
     );
