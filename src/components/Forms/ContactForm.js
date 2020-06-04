@@ -146,17 +146,7 @@ const TextArea = ({ fieldName, rows, cols, req, value = [] }) => {
   );
 };
 
-const ContactForm = () => {
-  const schema = yup.object().shape({
-    firstName: yup.string().required("Required"),
-    lastName: yup.string().required("Required"),
-    email: yup
-      .string()
-      .email("Valid email address required")
-      .required("Required"),
-    message: yup.string().required("Required"),
-  });
-
+const Form = ({ children, schema }) => {
   const methods = useForm({
     validationSchema: schema,
   });
@@ -191,15 +181,7 @@ const ContactForm = () => {
     <FormContext {...methods}>
       <ResetContext.Provider value={resetState}>
         <FormStyles onSubmit={methods.handleSubmit(onSubmit)}>
-          <FieldRow>
-            <Input fieldName="firstName" req />
-            <Input fieldName="lastName" req />
-          </FieldRow>
-          <FieldRow>
-            <Input fieldName="email" req />
-            <Input fieldName="phone" />
-          </FieldRow>
-          <TextArea fieldName="message" rows="5" req />
+          {children}
           <FormButtonArray>
             {/* {!isSubmitting && formAPISendState === "notSent" && (
               <Button value="Submit">Submit</Button>
@@ -222,6 +204,32 @@ const ContactForm = () => {
         </FormStyles>
       </ResetContext.Provider>
     </FormContext>
+  );
+};
+
+const ContactForm = () => {
+  const schema = yup.object().shape({
+    firstName: yup.string().required("Required"),
+    lastName: yup.string().required("Required"),
+    email: yup
+      .string()
+      .email("Valid email address required")
+      .required("Required"),
+    message: yup.string().required("Required"),
+  });
+
+  return (
+    <Form schema={schema}>
+      <FieldRow>
+        <Input fieldName="firstName" req />
+        <Input fieldName="lastName" req />
+      </FieldRow>
+      <FieldRow>
+        <Input fieldName="email" req />
+        <Input fieldName="phone" />
+      </FieldRow>
+      <TextArea fieldName="message" rows="5" req />
+    </Form>
   );
 };
 
