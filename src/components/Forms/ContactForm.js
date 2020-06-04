@@ -7,6 +7,7 @@ import {
   FormStyles,
   FieldStyles,
   FieldRow,
+  LabelWrapper,
   Label,
   Req,
   Err,
@@ -36,6 +37,8 @@ export const globalFieldList = {
     label: "Message",
   },
 };
+
+console.log(Label);
 
 const ResetContext = React.createContext();
 
@@ -74,13 +77,11 @@ const Input = ({ fieldName, type = "text", req, value = [] }) => {
       onBlur={() => setFocusState(false)}
       ref={focusClassRef}
     >
-      <Label htmlFor={gflName.name}>
-        <p>
-          {gflName.label}
-          {req && <Req>*</Req>}
-          {errors[fieldName] && <Err>{`  - ${errors[fieldName].message}`}</Err>}
-        </p>
-      </Label>
+      <LabelWrapper>
+        <Label htmlFor={gflName.name}>{gflName.label}</Label>
+        {req && <Req>*</Req>}
+        {errors[fieldName] && <Err>{`  - ${errors[fieldName].message}`}</Err>}
+      </LabelWrapper>
       <input
         name={gflName.name}
         type={type}
@@ -127,13 +128,11 @@ const TextArea = ({ fieldName, rows, cols, req, value = [] }) => {
       onBlur={() => setFocusState(false)}
       ref={focusClassRef}
     >
-      <Label htmlFor={gflName.name}>
-        <p>
-          {gflName.label}
-          {req && <Req>*</Req>}
-          {errors[fieldName] && <Err>{`  - ${errors[fieldName].message}`}</Err>}
-        </p>
-      </Label>
+      <LabelWrapper>
+        <Label htmlFor={gflName.name}>{gflName.label}</Label>
+        {req && <Req>*</Req>}
+        {errors[fieldName] && <Err>{`  - ${errors[fieldName].message}`}</Err>}
+      </LabelWrapper>
       <textarea
         name={gflName.name}
         ref={register}
