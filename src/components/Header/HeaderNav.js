@@ -8,16 +8,12 @@ const navItemArr = [
     uri: "about",
   },
   {
-    name: "Apps",
-    uri: "apps",
+    name: "Resume",
+    uri: "resume",
   },
   {
     name: "Contact",
-    uri: "gallery",
-  },
-  {
-    name: "Resume",
-    uri: "resume",
+    uri: "contact",
   },
 ];
 
