@@ -229,6 +229,7 @@ const ContactForm = () => {
         <Input fieldName="phone" />
       </FieldRow>
       <TextArea fieldName="message" rows="5" req />
+      <input type="submit" value="submit" />
     </Form>
   );
 };

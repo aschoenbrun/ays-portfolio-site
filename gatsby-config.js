@@ -5,18 +5,18 @@ module.exports = {
     title: "AYS Portfolio",
     siteURL: "https://aysportfolio.com",
   },
-  // developMiddleware: app => {
-  //   app.use(
-  //     "/.netlify/functions/",
-  //     createProxyMiddleware({
-  //       target: "http://localhost:9000",
-  //       secure: false,
-  //       pathRewrite: {
-  //         "/.netlify/functions/": "",
-  //       },
-  //     })
-  //   )
-  // },
+  developMiddleware: (app) => {
+    app.use(
+      "/.netlify/functions/",
+      createProxyMiddleware({
+        target: "http://localhost:9000",
+        secure: false,
+        pathRewrite: {
+          "/.netlify/functions/": "",
+        },
+      })
+    );
+  },
   plugins: [
     {
       resolve: "gatsby-source-sanity",
