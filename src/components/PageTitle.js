@@ -40,55 +40,36 @@ const animeStandard = {
   easing: "easeInOutSine",
 };
 
-const PTWaveItemOuter = () => {
-  const animeRefOuter = useRef();
-  useEffect(() => {
-    anime({
-      ...animeStandard,
-      targets: animeRefOuter.current,
-      duration: function () {
-        return anime.random(750, 1500);
-      },
-      height: function () {
-        return anime.random(7, 15);
-      },
-    });
-  }, []);
-  return <PTWaveItemStyles ref={animeRefOuter} />;
-};
+const PTWaveItem = ({ type }) => {
+  let heightArr;
+  switch (type) {
+    case "outer":
+      heightArr = [7, 15];
+      break;
+    case "mid":
+      heightArr = [17, 25];
+      break;
+    case "inner":
+      heightArr = [27, 35];
+      break;
+    default:
+      heightArr = [5, 35];
+  }
 
-const PTWaveItemMid = () => {
-  const animeRefMid = useRef();
+  const animeRef = useRef();
   useEffect(() => {
     anime({
       ...animeStandard,
-      targets: animeRefMid.current,
+      targets: animeRef.current,
       duration: function () {
         return anime.random(750, 1500);
       },
       height: function () {
-        return anime.random(17, 25);
+        return anime.random(...heightArr);
       },
     });
   }, []);
-  return <PTWaveItemStyles ref={animeRefMid} />;
-};
-
-const PTWaveItemInner = () => {
-  const animeRefInner = useRef();
-  useEffect(() => {
-    anime({
-      ...animeStandard,
-      targets: animeRefInner.current,
-      duration: function () {
-        return anime.random(750, 1500);
-      },
-      height: function () {
-        return anime.random(27, 35);
-      },
-    });
-  }, []);
-  return <PTWaveItemStyles ref={animeRefInner} />;
+  return <PTWaveItemStyles ref={animeRef} />;
 };
 
 const PageTitle = ({ children }) => {
@@ -96,11 +77,11 @@ const PageTitle = ({ children }) => {
     <>
       <PageTitleStyles>{children}</PageTitleStyles>
       <PageTitleDivStyles>
-        <PTWaveItemOuter />
-        <PTWaveItemMid />
-        <PTWaveItemInner />
-        <PTWaveItemMid />
-        <PTWaveItemOuter />
+        <PTWaveItem type={"outer"} />
+        <PTWaveItem type={"mid"} />
+        <PTWaveItem type={"inner"} />
+        <PTWaveItem type={"mid"} />
+        <PTWaveItem type={"outer"} />
       </PageTitleDivStyles>
     </>
   );
