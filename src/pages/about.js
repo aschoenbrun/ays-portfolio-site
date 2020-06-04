@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import PageTitle from "../components/PageTitle";
 import LayoutMain from "../components/Layouts/LayoutMain";
 import PageIntro from "../components/PageIntro";
+import Button from "../components/Button/Button";
 
 const AboutMe = ({ data, location }) => {
   const { sanityPage: pageData } = data;
@@ -13,7 +14,8 @@ const AboutMe = ({ data, location }) => {
     <LayoutMain location={location}>
       <PageTitle>{pageTitle}</PageTitle>
       <PageIntro>{intro}</PageIntro>
-      <ReactMarkdown source={content} />
+      <ReactMarkdown source={content} className="react-markdown" />
+      <Button text="View Resume" url="/resume/" target="_parent" />
     </LayoutMain>
   );
 };

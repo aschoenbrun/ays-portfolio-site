@@ -3,7 +3,6 @@ import { graphql } from "gatsby";
 import PageTitle from "../components/PageTitle";
 import LayoutMain from "../components/Layouts/LayoutMain";
 import PageIntro from "../components/PageIntro";
-import Button from "../components/Button/Button";
 import ResSecList from "../components/Resume/ResSecList";
 
 export const ResListContext = React.createContext();
@@ -17,8 +16,12 @@ const Resume = ({ data, location }) => {
     <ResListContext.Provider value={sections}>
       <LayoutMain location={location}>
         <PageTitle>{pageTitle}</PageTitle>
-        <PageIntro>{resumeIntro.introText}</PageIntro>
-        <Button text="Download Resume" />
+        <PageIntro
+          btnText="Download Resume"
+          btnLink="https://drive.google.com/file/d/1AGvWxB94L4l35wCuf2VrTpt4IP6RYG3m/view?usp=sharing"
+        >
+          {resumeIntro.introText}
+        </PageIntro>
         <ResSecList />
       </LayoutMain>
     </ResListContext.Provider>

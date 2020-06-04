@@ -18,7 +18,7 @@ const PageTitleDivStyles = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin: 20px auto 55px;
+  margin: 20px auto 60px;
   width: 150px;
   height: 35px;
   border-top: 1px solid ${color("tan", "lt")};
@@ -68,7 +68,7 @@ const PTWaveItem = ({ type }) => {
         return anime.random(...heightArr);
       },
     });
-  }, []);
+  });
   return <PTWaveItemStyles ref={animeRef} />;
 };
 

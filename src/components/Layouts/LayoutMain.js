@@ -4,6 +4,8 @@ import Footer from "../Footer/Footer";
 import { Helmet } from "react-helmet";
 import GlobalStyles, { color } from "../GlobalStyles";
 import styled from "styled-components/macro";
+import { ListItemStyles } from "../ListItem";
+import { ListItemDivStyles } from "../ListItemDiv";
 
 export const PageContext = React.createContext();
 
@@ -39,7 +41,24 @@ const ContentStyles = styled.main`
   .repo-link {
     margin: 60px 0 20px;
   }
+  .react-markdown {
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      ${ListItemStyles.componentStyle.rules};
+      &::before,
+      &:before {
+        ${ListItemDivStyles.componentStyle.rules};
+        content: "\x0002F\x0002F";
+      }
+    }
+  }
 `;
+
+console.log(ListItemStyles);
+console.log(ListItemDivStyles);
 
 const LayoutMain = ({ children, location }) => {
   return (

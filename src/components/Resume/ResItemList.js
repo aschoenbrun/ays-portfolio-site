@@ -1,35 +1,53 @@
 import React from "react";
 import styled from "styled-components/macro";
+import moment from "moment";
+import { color } from "../GlobalStyles";
+import SectionSubTitle from "../SectionSubTitle";
 import ResItemSubListItems from "./ResItemSubListItems";
-
-const ResItemListHeader = styled.h3``;
+import SectionSubTitleDesc from "../SectionSubTitleDesc";
 
 const ResItemListItem = styled.li`
   margin-right: ${(props) => props.dir.marginR};
+  margin-bottom: 30px;
+  @media screen and (min-width: 760px) {
+    margin-bottom: 20px;
+  }
 `;
 
-const ResListItemInfo = styled.p``;
+const InfoStyles = styled.span`
+  display: block;
+`;
 
-const InfoStyles = styled.span``;
+const InfoDivStyles = styled.span`
+  display: none;
+  @media screen and (min-width: 760px) {
+    display: block;
+    margin: -1px 13px 0 10px;
+    margin-bottom: 0;
+    font-size: 11px;
+    font-weight: 100;
+    letter-spacing: -0.1em;
+    color: ${color("tan", "lt")};
+  }
+`;
 
-const InfoDivStyles = styled.span``;
-
-const InfoToStyles = styled.span``;
+const InfoToStyles = styled(InfoDivStyles)`
+  @media screen and (min-width: 760px) {
+    margin: -1px 7px 0 4px;
+  }
+`;
 
 const ResItemSubListUl = styled.ul`
   list-style-type: none;
   padding: 0;
-  margin: 0 0 10px;
+  margin: 0 0 25px;
   display: flex;
   flex-direction: ${(props) => props.dir.secItemList};
   margin: ${(props) => props.dir.ulMargin};
 `;
 
 const ResItemList = ({ resSection, dir }) => {
-  const resSecName = resSection.name;
-  const resSecId = resSection._id;
   const resSubSection = resSection.resumeSubSections;
-  console.log(dir);
 
   return resSubSection.map((item) => {
     let itemTitle;
@@ -50,6 +68,10 @@ const ResItemList = ({ resSection, dir }) => {
 
     const itemKey = item._key;
 
+    const fmtDate = (date) => {
+      return moment(date).format("MMM YYYY");
+    };
+
     const ItemInfo = () => {
       const { location, company, dateStart, dateEnd, currentPosition } = item;
 
@@ -61,9 +83,9 @@ const ResItemList = ({ resSection, dir }) => {
             case location:
               return `${location.city}, ${location.state}`;
             case dateStart:
-              return dateStart;
+              return fmtDate(dateStart);
             case dateEnd:
-              return dateEnd;
+              return fmtDate(dateEnd);
             case currentPosition:
               return "Present";
             default:
@@ -84,7 +106,7 @@ const ResItemList = ({ resSection, dir }) => {
 
       if (location || company || dateStart || dateEnd || currentPosition) {
         return (
-          <>
+          <SectionSubTitleDesc>
             {info(company, true)}
             {item.__typename === "SanityResumeEducation"
               ? info(location)
@@ -92,7 +114,7 @@ const ResItemList = ({ resSection, dir }) => {
             {info(dateStart, false, true)}
             {info(dateEnd)}
             {info(currentPosition)}
-          </>
+          </SectionSubTitleDesc>
         );
       }
       return null;
@@ -100,12 +122,14 @@ const ResItemList = ({ resSection, dir }) => {
 
     return (
       <ResItemListItem key={itemKey} dir={dir}>
-        <ResItemListHeader>{itemTitle}</ResItemListHeader>
-        <ResListItemInfo>
-          <ItemInfo />
-        </ResListItemInfo>
+        <SectionSubTitle>{itemTitle}</SectionSubTitle>
+        <ItemInfo />
         <ResItemSubListUl dir={dir}>
-          <ResItemSubListItems resListItem={item} itemTitle={itemTitle} />
+          <ResItemSubListItems
+            resListItem={item}
+            itemTitle={itemTitle}
+            dir={dir.secItemList}
+          />
         </ResItemSubListUl>
       </ResItemListItem>
     );

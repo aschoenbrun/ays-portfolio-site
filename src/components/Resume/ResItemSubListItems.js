@@ -1,11 +1,8 @@
 import React from "react";
-import styled from "styled-components/macro";
-import { color } from "../GlobalStyles";
 import camelCase from "camelCase";
+import ListItem from "../ListItem";
 
-const ListStyles = styled.li``;
-
-const ResItemSubListItems = ({ resListItem, itemTitle }) => {
+const ResItemSubListItems = ({ resListItem, itemTitle, dir }) => {
   console.log(resListItem);
   const { accomplishments, listItems, email, phone, __typename } = resListItem;
 
@@ -13,14 +10,20 @@ const ResItemSubListItems = ({ resListItem, itemTitle }) => {
     accomplishments &&
     accomplishments.map((accomp) => {
       return (
-        <ListStyles key={camelCase(itemTitle + accomp)}>{accomp}</ListStyles>
+        <ListItem key={camelCase(itemTitle + accomp)} dir={dir}>
+          {accomp}
+        </ListItem>
       );
     });
 
   const listItemList =
     listItems &&
     listItems.map((item) => {
-      return <ListStyles key={camelCase(itemTitle + item)}>{item}</ListStyles>;
+      return (
+        <ListItem key={camelCase(itemTitle + item)} dir={dir}>
+          {item}
+        </ListItem>
+      );
     });
 
   const list =
@@ -28,10 +31,16 @@ const ResItemSubListItems = ({ resListItem, itemTitle }) => {
       accompList
     ) : __typename === "SanityResumeReference" ? (
       <>
-        <ListStyles key={camelCase(itemTitle + "email")}>
-          <a href={`mailto:${email}`}>{email}</a>
-        </ListStyles>
-        <ListStyles key={camelCase(itemTitle + "phone")}>{phone}</ListStyles>
+        {email && (
+          <ListItem key={camelCase(itemTitle + "email")} dir={dir}>
+            <a href={`mailto:${email}`}>{email}</a>
+          </ListItem>
+        )}
+        {phone && (
+          <ListItem key={camelCase(itemTitle + "phone")} dir={dir}>
+            {phone}
+          </ListItem>
+        )}
       </>
     ) : (
       listItemList
