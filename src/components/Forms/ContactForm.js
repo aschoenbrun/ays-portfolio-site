@@ -42,7 +42,15 @@ console.log(Label);
 
 const ResetContext = React.createContext();
 
-const Input = ({ fieldName, type = "text", req, value = [] }) => {
+const Input = ({
+  fieldName,
+  fieldType = "input",
+  inputType = "text",
+  rows,
+  cols,
+  req,
+  value = [],
+}) => {
   const focusClassRef = useRef("");
 
   const [focusState, setFocusState] = useState(false);
@@ -50,56 +58,7 @@ const Input = ({ fieldName, type = "text", req, value = [] }) => {
 
   const resetState = useContext(ResetContext);
 
-  useEffect(() => {
-    resetState && setText("");
-  }, [resetState]);
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setText(value);
-    console.log(value);
-  };
-
-  useEffect(() => {
-    focusState
-      ? focusClassRef.current.classList.add("focused")
-      : focusClassRef.current.classList.remove("focused");
-  }, [focusState, focusClassRef]);
-
-  const { register, errors } = useFormContext();
-
-  const gflName = globalFieldList[fieldName];
-
-  return (
-    <FieldStyles
-      className={errors[fieldName] && "error"}
-      onFocus={() => setFocusState(true)}
-      onBlur={() => setFocusState(false)}
-      ref={focusClassRef}
-    >
-      <LabelWrapper>
-        <Label htmlFor={gflName.name}>{gflName.label}</Label>
-        {req && <Req>*</Req>}
-        {errors[fieldName] && <Err>{`  - ${errors[fieldName].message}`}</Err>}
-      </LabelWrapper>
-      <input
-        name={gflName.name}
-        type={type}
-        ref={register}
-        onChange={(e) => handleChange(e)}
-        defaultValue={text}
-      />
-    </FieldStyles>
-  );
-};
-
-const TextArea = ({ fieldName, rows, cols, req, value = [] }) => {
-  const focusClassRef = useRef("");
-
-  const [focusState, setFocusState] = useState(false);
-  const [text, setText] = useState(value);
-
-  const resetState = useContext(ResetContext);
+  const FieldType = styled.input``;
 
   useEffect(() => {
     resetState && setText("");
@@ -133,11 +92,13 @@ const TextArea = ({ fieldName, rows, cols, req, value = [] }) => {
         {req && <Req>*</Req>}
         {errors[fieldName] && <Err>{`  - ${errors[fieldName].message}`}</Err>}
       </LabelWrapper>
-      <textarea
+      <FieldType
         name={gflName.name}
         ref={register}
+        as={fieldType}
         rows={rows}
         cols={cols}
+        inputType={inputType}
         onChange={(e) => handleChange(e)}
         defaultValue={text}
       />
@@ -227,7 +188,7 @@ const ContactForm = () => {
         <Input fieldName="email" req />
         <Input fieldName="phone" />
       </FieldRow>
-      <TextArea fieldName="message" rows="5" req />
+      <Input fieldType="textarea" fieldName="message" rows="5" req />
       <input type="submit" value="submit" />
     </Form>
   );
