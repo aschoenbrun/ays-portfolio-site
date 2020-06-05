@@ -3,6 +3,7 @@ import { useForm, FormContext, useFormContext } from "react-hook-form";
 import * as yup from "yup";
 import axios from "axios";
 import styled from "styled-components/macro";
+import Button from "../Button/Button";
 import {
   FormStyles,
   FieldStyles,
@@ -146,13 +147,13 @@ const Form = ({ children, schema }) => {
         <FormStyles onSubmit={methods.handleSubmit(onSubmit)}>
           {children}
           <FormButtonArray>
-            {/* {!isSubmitting && formAPISendState === "notSent" && (
-              <Button value="Submit">Submit</Button>
+            {!isSubmitting && formAPISendState === "notSent" && (
+              <Button as="button" value="Submit" text="Submit" target="_self" />
             )}
-            {formAPISendState !== "notSent" && (
+            {/* {formAPISendState !== "notSent" && (
               <FormSubSpinner formAPISendState={formAPISendState} />
-            )}
-            {formAPISendState === "sent" &&
+            )} */}
+            {/* {formAPISendState === "sent" &&
               {
                 <Button
                 type="reset"
@@ -192,7 +193,6 @@ const ContactForm = () => {
         <Input fieldName="phone" />
       </FieldRow>
       <Input fieldType="textarea" fieldName="message" rows="5" req />
-      <input type="submit" value="submit" />
     </Form>
   );
 };

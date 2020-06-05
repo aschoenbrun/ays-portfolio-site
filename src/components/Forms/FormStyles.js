@@ -28,7 +28,10 @@ export const FieldStyles = styled.div`
     textarea,
     select {
       border-color: ${color("orange")};
-      outline: none;
+      &:focus,
+      &:hover {
+        outline: none;
+      }
     }
   }
 `;

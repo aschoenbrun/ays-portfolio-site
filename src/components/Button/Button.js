@@ -46,7 +46,7 @@ const ButtonStyles = styled.a`
   }
 `;
 
-const Button = ({ url, target, rel, iconPubId, text }) => {
+const Button = ({ url, target, rel, iconPubId, text, type }) => {
   const hoverClassRef = useRef("");
   const [hover, setHover] = useState(false);
 
@@ -58,8 +58,9 @@ const Button = ({ url, target, rel, iconPubId, text }) => {
 
   return (
     <ButtonStyles
+      as={type ? type : "button"}
       ref={hoverClassRef}
-      href={url ? url : "#"}
+      href={url ? url : null}
       target={target ? target : "_blank"}
       rel={rel}
       onMouseEnter={() => setHover(true)}
