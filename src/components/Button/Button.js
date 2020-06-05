@@ -58,7 +58,7 @@ const Button = ({ url, target, rel, iconPubId, text, type }) => {
 
   return (
     <ButtonStyles
-      as={type ? type : "button"}
+      as={type ? type : "a"}
       ref={hoverClassRef}
       href={url ? url : null}
       target={target ? target : "_blank"}

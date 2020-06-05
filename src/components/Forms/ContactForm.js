@@ -148,7 +148,12 @@ const Form = ({ children, schema }) => {
           {children}
           <FormButtonArray>
             {!isSubmitting && formAPISendState === "notSent" && (
-              <Button as="button" value="Submit" text="Submit" target="_self" />
+              <Button
+                type="button"
+                value="Submit"
+                text="Submit"
+                target="_self"
+              />
             )}
             {/* {formAPISendState !== "notSent" && (
               <FormSubSpinner formAPISendState={formAPISendState} />
