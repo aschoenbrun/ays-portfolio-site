@@ -170,6 +170,8 @@ const Form = ({ children, schema }) => {
   );
 };
 
+// TODO: Troubleshoot validation not working
+
 const ContactForm = () => {
   const schema = yup.object().shape({
     firstName: yup.string().required("Required"),
