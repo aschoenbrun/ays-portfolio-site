@@ -42,6 +42,8 @@ console.log(Label);
 
 const ResetContext = React.createContext();
 
+const FieldType = styled.input``;
+
 const Input = ({
   fieldName,
   fieldType = "input",
@@ -58,14 +60,15 @@ const Input = ({
 
   const resetState = useContext(ResetContext);
 
-  const FieldType = styled.input``;
-
   useEffect(() => {
     resetState && setText("");
   }, [resetState]);
 
   const handleChange = (e) => {
-    const value = e.target.value.split("%0D%0A");
+    const value =
+      fieldType === "textarea"
+        ? e.target.value.split("%0D%0A")
+        : e.target.value;
     setText(value);
     console.log(value);
   };
@@ -180,11 +183,11 @@ const ContactForm = () => {
 
   return (
     <Form schema={schema}>
-      <FieldRow>
+      <FieldRow cols="2">
         <Input fieldName="firstName" req />
         <Input fieldName="lastName" req />
       </FieldRow>
-      <FieldRow>
+      <FieldRow cols="2">
         <Input fieldName="email" req />
         <Input fieldName="phone" />
       </FieldRow>

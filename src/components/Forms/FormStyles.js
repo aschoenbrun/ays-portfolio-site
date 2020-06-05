@@ -4,7 +4,13 @@ import { color } from "../GlobalStyles";
 const fieldPadding = "10px";
 const fieldBorderWidth = "2px";
 
-export const FormStyles = styled.form``;
+export const FormStyles = styled.form`
+  width: 90%;
+  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    width: 600px;
+  }
+`;
 
 export const FieldStyles = styled.div`
   margin-bottom: 20px;
@@ -27,7 +33,15 @@ export const FieldStyles = styled.div`
   }
 `;
 
-export const FieldRow = styled.div``;
+export const FieldRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0;
+  @media screen and (min-width: 800px) {
+    grid-template-columns: repeat(${(props) => props.cols}, 1fr);
+    grid-gap: 25px;
+  }
+`;
 
 export const LabelWrapper = styled.div`
   display: flex;
