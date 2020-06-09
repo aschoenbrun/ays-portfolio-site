@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import styled from "styled-components/macro";
 import { color } from "./GlobalStyles";
-import anime from "animejs";
+import { motion } from "framer-motion";
 
 export const PageTitleStyles = styled.h1`
   color: ${color("blue")};
@@ -24,7 +24,7 @@ const PageTitleDivStyles = styled.div`
   border-top: 1px solid ${color("tan", "lt")};
 `;
 
-const PTWaveItemStyles = styled.div`
+const PTWaveItemStyles = styled(motion.div)`
   width: 10px;
   margin: 0 2px;
   background-color: white;
@@ -33,49 +33,66 @@ const PTWaveItemStyles = styled.div`
   opacity: 0.5;
 `;
 
-const animeStandard = {
-  direction: "alternate",
-  loop: true,
-  autoplay: true,
-  easing: "easeInOutSine",
+const randNum = (x, type) => {
+  const mult = x * 0.25;
+  return type === "min"
+    ? Math.random() * (x + mult - x) + (x + mult)
+    : Math.random() * (x - (x - mult)) + x;
+};
+
+const randNumRange = (x, y, type) => {
+  const randX = randNum(x, "min");
+  const randY = randNum(y, "max");
+  return type === "arr"
+    ? [randX, randY]
+    : Math.random() * (randY - randX) + randX;
 };
 
 const PTWaveItem = ({ type }) => {
   let heightArr;
   switch (type) {
     case "outer":
-      heightArr = [7, 15];
+      heightArr = randNumRange(7, 25, "arr");
       break;
     case "mid":
-      heightArr = [17, 25];
+      heightArr = randNumRange(15, 30, "arr");
       break;
     case "inner":
-      heightArr = [27, 35];
+      heightArr = randNumRange(20, 40, "arr");
       break;
     default:
-      heightArr = [5, 35];
+      heightArr = randNumRange(7, 25, "arr");
   }
 
-  const animeRef = useRef();
-  useEffect(() => {
-    anime({
-      ...animeStandard,
-      targets: animeRef.current,
-      duration: function () {
-        return anime.random(750, 1500);
+  console.log(heightArr);
+
+  const ptWaveVariants = {
+    small: {
+      height: heightArr[0],
+    },
+    big: {
+      height: heightArr[1],
+      transition: {
+        yoyo: Infinity,
+        type: "tween",
+        duration: randNumRange(0.5, 0.85),
+        ease: "linear",
       },
-      height: function () {
-        return anime.random(...heightArr);
-      },
-    });
-  });
-  return <PTWaveItemStyles ref={animeRef} />;
+    },
+  };
+
+  console.log(ptWaveVariants);
+
+  return (
+    <PTWaveItemStyles variants={ptWaveVariants} initial="small" animate="big" />
+  );
 };
 
 const PageTitle = ({ children }) => {
   return (
     <>
       <PageTitleStyles>{children}</PageTitleStyles>
+
       <PageTitleDivStyles>
         <PTWaveItem type={"outer"} />
         <PTWaveItem type={"mid"} />

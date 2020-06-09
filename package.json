@@ -37,6 +37,7 @@
     "dotenv": "^8.2.0",
     "env-cmd": "^10.1.0",
     "formik": "^2.1.4",
+    "framer-motion": "^1.11.0",
     "gatsby": "^2.21.24",
     "gatsby-plugin-google-analytics": "^2.3.2",
     "gatsby-plugin-manifest": "^2.4.2",
