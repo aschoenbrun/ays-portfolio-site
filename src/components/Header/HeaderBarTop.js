@@ -35,7 +35,7 @@ const HeaderBarTopStyles = styled.div`
 const HeaderBarTop = () => {
   return (
     <HeaderBarTopStyles>
-      <HeaderBarVideoBG opacity="0.7" blendMode="color-burn" />
+      <HeaderBarVideoBG opacity={0.7} blendMode="color-burn" />
       <HeaderPortrait />
       <HeaderNamePos />
     </HeaderBarTopStyles>

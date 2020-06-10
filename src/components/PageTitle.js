@@ -52,13 +52,13 @@ const PTWaveItem = ({ type }) => {
   let heightArr;
   switch (type) {
     case "outer":
-      heightArr = randNumRange(7, 25, "arr");
+      heightArr = randNumRange(7, 17, "arr");
       break;
     case "mid":
-      heightArr = randNumRange(15, 30, "arr");
+      heightArr = randNumRange(10, 23, "arr");
       break;
     case "inner":
-      heightArr = randNumRange(20, 40, "arr");
+      heightArr = randNumRange(17, 30, "arr");
       break;
     default:
       heightArr = randNumRange(7, 25, "arr");
