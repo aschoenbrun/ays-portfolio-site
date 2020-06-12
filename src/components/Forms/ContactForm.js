@@ -2,8 +2,11 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import { useForm, FormContext, useFormContext } from "react-hook-form";
 import * as yup from "yup";
 import axios from "axios";
+import { motion } from "framer-motion";
 import styled from "styled-components/macro";
-import Button from "../Button/Button";
+import Button, { ButtonStyles } from "../Button/Button";
+import FormSubSpinner from "./FormSubSpinner";
+import FormSentStatus from "./FormSentStatus";
 import {
   FormStyles,
   FieldStyles,
@@ -14,7 +17,16 @@ import {
   Err,
 } from "./FormStyles";
 
-export const FormButtonArray = styled.div``;
+export const FormButtonArray = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1em;
+  font-weight: 700;
+  color: white;
+`;
 
 export const globalFieldList = {
   firstName: {
@@ -110,6 +122,10 @@ const Input = ({
   );
 };
 
+const ResetButtonStyles = styled(ButtonStyles)`
+  padding: 11px 13px;
+`;
+
 const Form = ({ children, schema }) => {
   const methods = useForm({
     validationSchema: schema,
@@ -141,6 +157,17 @@ const Form = ({ children, schema }) => {
   const { formState, reset } = methods;
   const { isSubmitting } = formState;
 
+  const resetVariants = {
+    initial: {
+      x: -100,
+      opacity: 0,
+    },
+    animate: {
+      x: 0,
+      opacity: 1,
+    },
+  };
+
   return (
     <FormContext {...methods}>
       <ResetContext.Provider value={resetState}>
@@ -155,20 +182,22 @@ const Form = ({ children, schema }) => {
                 target="_self"
               />
             )}
-            {/* {formAPISendState !== "notSent" && (
-              <FormSubSpinner formAPISendState={formAPISendState} />
-            )} */}
-            {/* {formAPISendState === "sent" &&
-              {
-                <Button
-                type="reset"
-                resetMethod={() => {
-                  reset({ message: "" });
-                  setResetState(true);
-                }}
-                setFormAPISendState={setFormAPISendState}
-              />
-              }} */}
+            {formAPISendState === "sending" && <FormSubSpinner />}
+            {formAPISendState === "sent" && (
+              <>
+                <FormSentStatus />
+                <ResetButtonStyles
+                  as={motion.input}
+                  type="reset"
+                  value="Reset"
+                  onClick={() => {
+                    reset({ message: "" });
+                    setResetState(true);
+                    setFormAPISendState("notSent");
+                  }}
+                />
+              </>
+            )}
           </FormButtonArray>
         </FormStyles>
       </ResetContext.Provider>

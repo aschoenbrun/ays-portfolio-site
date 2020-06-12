@@ -4,7 +4,7 @@ import { Image, Transformation } from "cloudinary-react";
 import styled from "styled-components/macro";
 import { color } from "../GlobalStyles";
 
-const ButtonStyles = styled.a`
+export const ButtonStyles = styled.a`
   position: relative;
   color: ${color("tan", "dk")};
   background-color: ${color("yellow")};
