@@ -6,7 +6,8 @@ import Button from "../components/Button/Button";
 
 const PageIntroStyle = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: ${(props) =>
+    props.align === "center" ? "center" : "flex-start"};
   align-items: flex-start;
   font-size: 18px;
   line-height: 1.8em;
@@ -31,11 +32,11 @@ const PageIntroTextStyle = styled.div`
   }
 `;
 
-const PageIntro = ({ children, btnText, btnLink }) => {
+const PageIntro = ({ children, align, btnText, btnLink }) => {
   return (
     <PageIntroStyle>
       <PageIntroSlashStyle>&#47;&#47;&nbsp;</PageIntroSlashStyle>
-      <div>
+      <div id="text-button-wrapper">
         <PageIntroTextStyle>
           <ReactMarkdown source={children} />
         </PageIntroTextStyle>
