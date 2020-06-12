@@ -145,8 +145,10 @@ const Form = ({ children, schema }) => {
       .then((res) => {
         // console.log(res)
         // console.log(res.data)
-        setFormAPISendState("sent");
-        setResetState(false);
+        setTimeout(() => {
+          setFormAPISendState("sent");
+          setResetState(false);
+        }, 1500);
       })
       .catch((error) => {
         console.log(`App error: ${error}`);
@@ -157,7 +159,7 @@ const Form = ({ children, schema }) => {
   const { formState, reset } = methods;
   const { isSubmitting } = formState;
 
-  const resetVariants = {
+  const FormArrayNuttonVariants = {
     initial: {
       x: -100,
       opacity: 0,
@@ -185,11 +187,19 @@ const Form = ({ children, schema }) => {
             {formAPISendState === "sending" && <FormSubSpinner />}
             {formAPISendState === "sent" && (
               <>
-                <FormSentStatus />
+                <FormSentStatus
+                  as={motion.div}
+                  variants={FormArrayNuttonVariants}
+                  initial="initial"
+                  animate="animate"
+                />
                 <ResetButtonStyles
                   as={motion.input}
                   type="reset"
                   value="Reset"
+                  variants={FormArrayNuttonVariants}
+                  initial="initial"
+                  animate="animate"
                   onClick={() => {
                     reset({ message: "" });
                     setResetState(true);

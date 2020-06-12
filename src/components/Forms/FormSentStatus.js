@@ -17,28 +17,8 @@ const FormSentStatusStyles = styled(ButtonStyles)`
   }
 `;
 
-const sentVariants = {
-  initial: {
-    x: -100,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-  },
-};
-
 const FormSentStatus = () => {
-  return (
-    <FormSentStatusStyles
-      as={motion.div}
-      variants={sentVariants}
-      initial="initial"
-      animate="animate"
-    >
-      Sent
-    </FormSentStatusStyles>
-  );
+  return <FormSentStatusStyles>Sent</FormSentStatusStyles>;
 };
 
 export default FormSentStatus;
