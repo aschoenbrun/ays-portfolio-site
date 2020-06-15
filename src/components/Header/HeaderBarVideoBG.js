@@ -48,9 +48,6 @@ const HeaderBarVideoBG = ({ opacity, blendMode }) => {
 
   const vidUrl = cldnyUrlTrans(vidOrigUrl, vidTrans);
 
-  console.log(vidTrans);
-  console.log(vidUrl);
-
   const headerBarVariants = {
     hidden: {
       opacity: 0,

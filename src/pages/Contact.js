@@ -7,12 +7,12 @@ import ContactForm from "../components/Forms/ContactForm";
 
 const Contact = ({ data, location }) => {
   const { sanityCustPage: pageData } = data;
-  const { pageTitle, intro } = pageData;
+  const { pageTitle, intro, centerIntro } = pageData;
 
   return (
     <LayoutMain location={location}>
       <PageTitle>{pageTitle}</PageTitle>
-      <PageIntro>{intro}</PageIntro>
+      <PageIntro centerIntro={centerIntro}>{intro}</PageIntro>
       <ContactForm />
     </LayoutMain>
   );
@@ -25,6 +25,7 @@ export const query = graphql`
     sanityCustPage(id: { eq: "af823fc8-df89-5a9e-b7a0-79f8f8fcb22d" }) {
       pageTitle
       intro
+      centerIntro
     }
   }
 `;

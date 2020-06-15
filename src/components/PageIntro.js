@@ -6,8 +6,7 @@ import Button from "../components/Button/Button";
 
 const PageIntroStyle = styled.div`
   display: flex;
-  justify-content: ${(props) =>
-    props.align === "center" ? "center" : "flex-start"};
+  justify-content: ${(props) => (props.centerIntro ? "center" : "flex-start")};
   align-items: flex-start;
   font-size: 18px;
   line-height: 1.8em;
@@ -32,9 +31,9 @@ const PageIntroTextStyle = styled.div`
   }
 `;
 
-const PageIntro = ({ children, align, btnText, btnLink }) => {
+const PageIntro = ({ children, centerIntro, btnText, btnLink }) => {
   return (
-    <PageIntroStyle>
+    <PageIntroStyle centerIntro={centerIntro}>
       <PageIntroSlashStyle>&#47;&#47;&nbsp;</PageIntroSlashStyle>
       <div id="text-button-wrapper">
         <PageIntroTextStyle>
