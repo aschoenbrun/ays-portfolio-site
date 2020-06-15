@@ -4,7 +4,7 @@ import { color } from "./GlobalStyles";
 
 export const SectionSubTitleStyles = styled.h4`
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
   letter-spacing: 0.2em;
   margin: 0 0 10px;
