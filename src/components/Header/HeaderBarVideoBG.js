@@ -30,18 +30,18 @@ const HeaderBarVideoBG = ({ opacity, blendMode }) => {
   const min600 = useMediaQuery({ minWidth: 600 });
   const min480 = useMediaQuery({ minWidth: 480 });
 
-  const vidSize = min480
-    ? { w: 610, h: 200 }
-    : min600
-    ? { w: 775, h: 200 }
-    : min768
-    ? { w: 910, h: 200 }
-    : min900
-    ? { w: 1035, h: 200 }
+  const vidSize = min1200
+    ? { w: 1920, h: 300 }
     : min1024
     ? { w: 1210, h: 200 }
-    : min1200
-    ? { w: 1920, h: 300 }
+    : min900
+    ? { w: 1035, h: 200 }
+    : min768
+    ? { w: 910, h: 200 }
+    : min600
+    ? { w: 775, h: 200 }
+    : min480
+    ? { w: 610, h: 200 }
     : { w: 490, h: 200 };
 
   const vidTrans = `w_${vidSize.w},h_${vidSize.h},f_auto,q_auto,vc_auto,c_fill`;
