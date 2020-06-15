@@ -64,8 +64,6 @@ const PTWaveItem = ({ type }) => {
       heightArr = randNumRange(7, 25, "arr");
   }
 
-  console.log(heightArr);
-
   const ptWaveVariants = {
     small: {
       height: heightArr[0],
@@ -80,8 +78,6 @@ const PTWaveItem = ({ type }) => {
       },
     },
   };
-
-  console.log(ptWaveVariants);
 
   return (
     <PTWaveItemStyles variants={ptWaveVariants} initial="small" animate="big" />

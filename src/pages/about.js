@@ -9,7 +9,7 @@ import Button from "../components/Button/Button";
 const AboutMe = ({ data, location }) => {
   const { sanityPage: pageData } = data;
   const { pageTitle, intro, content } = pageData;
-  console.log(pageData);
+
   return (
     <LayoutMain location={location}>
       <PageTitle>{pageTitle}</PageTitle>

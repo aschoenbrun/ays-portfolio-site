@@ -3,7 +3,6 @@ import camelCase from "camelCase";
 import ListItem from "../ListItem";
 
 const ResItemSubListItems = ({ resListItem, itemTitle, dir }) => {
-  console.log(resListItem);
   const { accomplishments, listItems, email, phone, __typename } = resListItem;
 
   const accompList =

@@ -27,8 +27,6 @@ const ResSubList = () => {
   const resSections = useContext(ResListContext);
 
   const list = resSections.map((resSection) => {
-    console.log(resSection);
-
     let dir;
     switch (resSection.name) {
       case "Skills":

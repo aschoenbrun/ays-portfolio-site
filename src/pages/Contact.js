@@ -9,7 +9,6 @@ const Contact = ({ data, location }) => {
   const { sanityCustPage: pageData } = data;
   const { pageTitle, intro } = pageData;
 
-  console.log(pageData);
   return (
     <LayoutMain location={location}>
       <PageTitle>{pageTitle}</PageTitle>

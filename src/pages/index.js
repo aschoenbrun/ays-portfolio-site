@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import LayoutMain from "../components/Layouts/LayoutMain";
 export default function Home({ data, location }) {
   const { sanityPage: pageData } = data;
-  console.log(pageData);
+
   return (
     <LayoutMain location={location}>
       <h1>Hello Gatsby!</h1>

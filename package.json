@@ -65,6 +65,7 @@
     "react-images": "^1.1.7",
     "react-markdown": "^4.3.1",
     "react-player": "^2.1.0",
+    "react-responsive": "^8.1.0",
     "react-scroll": "^1.7.16",
     "react-spring": "^8.0.27",
     "smooth-scroll": "^16.1.3",

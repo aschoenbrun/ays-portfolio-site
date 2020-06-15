@@ -57,9 +57,6 @@ const ContentStyles = styled.main`
   }
 `;
 
-console.log(ListItemStyles);
-console.log(ListItemDivStyles);
-
 const LayoutMain = ({ children, location }) => {
   return (
     <PageContext.Provider value={location}>

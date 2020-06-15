@@ -51,8 +51,6 @@ export const globalFieldList = {
   },
 };
 
-console.log(Label);
-
 const ResetContext = React.createContext();
 
 const FieldType = styled.input``;
@@ -83,7 +81,6 @@ const Input = ({
         ? e.target.value.split("%0D%0A")
         : e.target.value;
     setText(value);
-    console.log(value);
   };
 
   useEffect(() => {
