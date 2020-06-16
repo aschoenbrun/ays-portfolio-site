@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import LayoutMain from "../components/Layouts/LayoutMain";
 export default function Home({ data, location }) {
-  const { sanityPage: pageData } = data;
+  // const { sanityPage: pageData } = data;
 
   return (
     <LayoutMain location={location}>
