@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import styled from "styled-components/macro";
 import PageTitle from "../components/PageTitle";
 import LayoutMain from "../components/Layouts/LayoutMain";
 import PageIntro from "../components/PageIntro";
 import GalleryItem from "../components/Gallery/GalleryItem";
+import GalleryLightbox from "../components/Gallery/GalleryLightbox";
 
 const GalleryStyles = styled.ul`
   display: grid;
@@ -22,13 +23,23 @@ const GalleryStyles = styled.ul`
   }
 `;
 
-const gallery = ({ data, location }) => {
+export const LightboxContext = React.createContext();
+
+const Gallery = ({ data, location }) => {
   const { sanityUiuxPage: pageData } = data;
   const { pageTitle, intro, centerIntro, galleryItems } = pageData;
 
+  const [ltbxState, setLtbxState] = useState({
+    toggle: false,
+    glyImgUrl: "",
+    glyName: "",
+  });
+
   const galleryList = galleryItems.map((glyItem) => {
     const glyKey = glyItem._key;
-    return <GalleryItem glyItem={glyItem} key={glyKey} />;
+    return (
+      <GalleryItem key={glyKey} glyItem={glyItem} setLtbxState={setLtbxState} />
+    );
   });
 
   return (
@@ -36,11 +47,12 @@ const gallery = ({ data, location }) => {
       <PageTitle>{pageTitle}</PageTitle>
       <PageIntro centerIntro={centerIntro}>{intro}</PageIntro>
       <GalleryStyles>{galleryList}</GalleryStyles>
+      <GalleryLightbox ltbxState={ltbxState} setLtbxState={setLtbxState} />
     </LayoutMain>
   );
 };
 
-export default gallery;
+export default Gallery;
 
 export const query = graphql`
   query {

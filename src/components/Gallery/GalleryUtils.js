@@ -1,20 +1,32 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components/macro";
 import { motion } from "framer-motion";
 import { color } from "../GlobalStyles";
-import { ButtonStyles } from "../Button/Button";
+import Button, { ButtonStyles } from "../Button/Button";
 import ButtonVidBg from "../Button/ButtonVidBg";
-import { FaCommentMedical, FaCommentSlash } from "react-icons/fa";
+import {
+  FaCommentMedical,
+  FaCommentSlash,
+  FaSearchPlus,
+  FaPlay,
+} from "react-icons/fa";
 
 const GalleryImgUtilStyles = styled(motion.div)`
   position: absolute;
   bottom: 4px;
   display: grid;
   grid-template-columns: ${(props) =>
-    props.glyTest ? "1fr auto auto" : "1fr auto"};
+    props.glyTest || props.glyLink
+      ? "1fr auto auto"
+      : props.glyTest && props.glyLink
+      ? "1fr auto auto auto"
+      : "1fr auto"};
   grid-gap: 4px;
   width: calc(100% - 8px);
   margin: 0 4px;
+  .site-link {
+    padding: 0 13px;
+  }
 `;
 
 const GalleryNameStyles = styled.h2`
@@ -33,13 +45,18 @@ const GalleryNameStyles = styled.h2`
 
 const GalleryUtilBtnStyles = styled(ButtonStyles)`
   font-size: 20px;
-  padding: 0 10px;
+  padding: 3px 10px 0;
   display: flex;
   align-items: center;
 `;
 
 const GalleryTestStyles = styled.div`
-  ${(props) => (props.glyTest ? "grid-column: 1 / 4" : "grid-column: 1 / 3")};
+  ${(props) =>
+    props.glyTest || props.glyLink
+      ? "grid-column: 1 / 4"
+      : props.glyTest && props.glyLink
+      ? "grid-column: 1 / 5"
+      : "grid-column: 1 / 3"};
   background-color: rgba(0, 0, 0, 0.75);
   p {
     margin: 7px 13px;
@@ -64,6 +81,11 @@ const GalleryTestStyles = styled.div`
   }
 `;
 
+const BtnIconWrap = styled.div`
+  position: relative;
+  z-index: 100;
+`;
+
 const galUtilBarVariants = {
   open: {
     y: 0,
@@ -73,14 +95,29 @@ const galUtilBarVariants = {
   },
 };
 
-const GalleryUtils = ({ glyName, glyTest, glyLink }) => {
+const GalleryUtils = ({
+  glyName,
+  glyImgUrl,
+  glyTest,
+  glyLink,
+  setLtbxState,
+}) => {
   const [galleryTestToggle, setGalleryTestToggle] = useState(false);
   const testClass = useRef();
   const toggleIcon = useRef();
+  const [hover, setHover] = useState(false);
 
   !galleryTestToggle
     ? (toggleIcon.current = <FaCommentMedical />)
     : (toggleIcon.current = <FaCommentSlash />);
+
+  useEffect(() => {
+    if (toggleIcon.current.classList) {
+      hover
+        ? toggleIcon.current.classList.add("hover")
+        : toggleIcon.current.classList.remove("hover");
+    }
+  }, [hover]);
 
   const GalleryTestBtn = () => {
     return glyTest ? (
@@ -88,9 +125,11 @@ const GalleryUtils = ({ glyName, glyTest, glyLink }) => {
         as="button"
         ref={toggleIcon}
         onClick={() => setGalleryTestToggle(!galleryTestToggle)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
       >
-        {toggleIcon.current}
         <ButtonVidBg />
+        <BtnIconWrap>{toggleIcon.current}</BtnIconWrap>
       </GalleryUtilBtnStyles>
     ) : null;
   };
@@ -98,16 +137,49 @@ const GalleryUtils = ({ glyName, glyTest, glyLink }) => {
   const GalleryTest = () => {
     return (
       glyTest && (
-        <GalleryTestStyles>
+        <GalleryTestStyles glyTest={glyTest}>
           <p>{glyTest}</p>
         </GalleryTestStyles>
       )
     );
   };
 
+  const GalleryLbToggleBtn = () => {
+    const hoverClassRef = useRef("");
+    const [hover, setHover] = useState(false);
+    useEffect(() => {
+      hover
+        ? hoverClassRef.current.classList.add("hover")
+        : hoverClassRef.current.classList.remove("hover");
+    }, [hover]);
+    return (
+      <GalleryUtilBtnStyles
+        as="button"
+        ref={hoverClassRef}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        onClick={() =>
+          setLtbxState({
+            toggle: true,
+            glyName: glyName,
+            glyImgUrl: glyImgUrl,
+          })
+        }
+      >
+        <ButtonVidBg />
+        <BtnIconWrap>
+          <FaSearchPlus />
+        </BtnIconWrap>
+      </GalleryUtilBtnStyles>
+    );
+  };
+
+  const goToSiteIcon = <FaPlay />;
+
   return (
     <GalleryImgUtilStyles
       glyTest={glyTest}
+      glyLink={glyLink}
       ref={testClass}
       variants={galUtilBarVariants}
       initial="closed"
@@ -115,6 +187,10 @@ const GalleryUtils = ({ glyName, glyTest, glyLink }) => {
     >
       <GalleryNameStyles>{glyName}</GalleryNameStyles>
       <GalleryTestBtn />
+      <GalleryLbToggleBtn />
+      {glyLink && (
+        <Button classes="site-link" url={glyLink} text={goToSiteIcon} />
+      )}
       <GalleryTest />
     </GalleryImgUtilStyles>
   );

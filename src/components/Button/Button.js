@@ -46,7 +46,7 @@ export const ButtonStyles = styled.a`
   }
 `;
 
-const Button = ({ url, target, rel, iconPubId, text, type }) => {
+const Button = ({ url, target, rel, iconPubId, text, type, classes }) => {
   const hoverClassRef = useRef("");
   const [hover, setHover] = useState(false);
 
@@ -58,11 +58,18 @@ const Button = ({ url, target, rel, iconPubId, text, type }) => {
 
   return (
     <ButtonStyles
+      className={classes}
       as={type ? type : "a"}
       ref={hoverClassRef}
       href={url ? url : null}
       target={target ? target : "_blank"}
-      rel={rel}
+      rel={
+        rel && (target === "_blank" || target === "")
+          ? `${rel} noopener noreferrer`
+          : rel
+          ? rel
+          : "noopener noreferrer"
+      }
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >

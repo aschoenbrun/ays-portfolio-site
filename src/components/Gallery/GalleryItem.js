@@ -14,7 +14,7 @@ const GalleryItemStyles = styled.li`
   }
 `;
 
-const GalleryItem = ({ glyItem }) => {
+const GalleryItem = ({ glyItem, setLtbxState }) => {
   const glyName = glyItem.name;
   const glyImgUrl = glyItem.image.cloudinaryUrlField;
   const glyImgAlt = glyItem.image.alt;
@@ -24,7 +24,13 @@ const GalleryItem = ({ glyItem }) => {
   return (
     <GalleryItemStyles>
       <GalleryImage glyImgUrl={glyImgUrl} glyImgAlt={glyImgAlt} />
-      <GalleryUtils glyName={glyName} glyTest={glyTest} glyLink={glyLink} />
+      <GalleryUtils
+        glyName={glyName}
+        glyImgUrl={glyImgUrl}
+        glyTest={glyTest}
+        glyLink={glyLink}
+        setLtbxState={setLtbxState}
+      />
     </GalleryItemStyles>
   );
 };
