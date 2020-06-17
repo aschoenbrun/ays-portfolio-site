@@ -58,7 +58,7 @@ const Button = ({ url, target, rel, iconPubId, text, type, classes }) => {
 
   return (
     <ButtonStyles
-      className={classes}
+      className={classes ? `${classes} btn` : "btn"}
       as={type ? type : "a"}
       ref={hoverClassRef}
       href={url ? url : null}

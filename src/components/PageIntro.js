@@ -13,6 +13,9 @@ const PageIntroStyle = styled.div`
   letter-spacing: 0.07em;
   margin-top: 0;
   margin-bottom: 75px;
+  .btn {
+    margin-top: 20px;
+  }
 `;
 
 const PageIntroSlashStyle = styled.div`
@@ -25,7 +28,7 @@ const PageIntroSlashStyle = styled.div`
 `;
 
 const PageIntroTextStyle = styled.div`
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   p {
     margin: 0;
   }
