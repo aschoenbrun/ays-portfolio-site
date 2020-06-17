@@ -189,7 +189,12 @@ const GalleryUtils = ({
       <GalleryTestBtn />
       <GalleryLbToggleBtn />
       {glyLink && (
-        <Button classes="site-link" url={glyLink} text={goToSiteIcon} />
+        <Button
+          classes="site-link"
+          url={glyLink}
+          text={goToSiteIcon}
+          rel="nofollow noopener noreferrer"
+        />
       )}
       <GalleryTest />
     </GalleryImgUtilStyles>
