@@ -8,8 +8,8 @@ const SectionTitleStyles = styled.h3`
   align-items: center;
   font-family: "Fira Code", monospace;
   text-transform: lowercase;
-  font-weight: 400;
-  font-size: 30px;
+  font-weight: 300;
+  font-size: 33px;
   margin: 0 0 30px;
   color: ${color("blue")};
   @media screen and (min-width: 1024px) {
