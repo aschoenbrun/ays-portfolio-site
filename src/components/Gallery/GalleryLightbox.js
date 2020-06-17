@@ -98,8 +98,8 @@ const imgVariants = {
     transition: {
       delay: 0.5,
       type: "spring",
-      mass: 3,
-      velocity: 2,
+      mass: 2,
+      velocity: 0.5,
       damping: 20,
     },
   },
