@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components/macro";
 import { color } from "../GlobalStyles";
 import { HeaderFooterText } from "../GlobalStyles";
+import cldnyUrlTrans from "../../scripts/cldnyUrlTrans";
 
 const HeaderBarBottomStyles = styled.div`
   background-color: ${color("tan", "dk")};
@@ -39,9 +40,12 @@ const HeaderBottmBgImg = styled.div`
   right: 0;
   left: 0;
   z-index: -1;
-  background-image: url("https://res.cloudinary.com/aschoen/image/upload/c_fill,f_auto,g_center,h_60,q_auto,w_1920/v1591042503/AYS%20Portfolio%20Site%20Images/wall-1846946_1920---I_ukff5z.jpg");
-  mix-blend-mode: multiply;
-  opacity: 0.05;
+  background-image: url(${cldnyUrlTrans(
+    "https://res.cloudinary.com/aschoen/image/upload/v1592410480/AYS%20Portfolio%20Site%20Images/background-of-stone-granite-and-igneous-rock_wodzrm.jpg",
+    "c_fill,f_auto,g_center,h_60,e_grayscale,q_auto,w_1920"
+  )});
+  mix-blend-mode: darken;
+  opacity: 0.02;
 `;
 
 const HeaderBarBottom = () => {

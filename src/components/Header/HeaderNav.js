@@ -1,39 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/macro";
 import HeaderNavItem from "./HeaderNavItem";
+import HeaderNavToggle from "./HeaderNavToggle";
+import { useMediaQuery } from "react-responsive";
+import { motion } from "framer-motion";
+import { NavContext } from "../Layouts/LayoutMain";
 
-const navItemArr = [
-  {
-    name: "About",
-    uri: "about",
-  },
-  {
-    name: "Resume",
-    uri: "resume",
-  },
-  {
-    name: "Gallery",
-    uri: "gallery",
-  },
-  {
-    name: "Contact",
-    uri: "contact",
-  },
-];
-
-const navItems = navItemArr.map((navItem) => {
-  return <HeaderNavItem key={navItem.name} navItem={navItem} />;
-});
+const navItems = (navItemArr) =>
+  navItemArr.map((navItem) => {
+    return <HeaderNavItem key={navItem.name} navItem={navItem} />;
+  });
 
 // TODO: Check nav cross-browser compatability
 
 const HeaderNavStyles = styled.nav`
+  width: 200px;
+  margin: 0 auto;
   ul {
-    position: absolute;
-    bottom: -38px;
-    transform: translateY(0);
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,20 +26,52 @@ const HeaderNavStyles = styled.nav`
     width: 200px;
     transition: 0.5s;
     margin: 0 1px;
+    list-style-type: none;
+    li:last-child {
+      &,
+      button {
+        border-radius: 0 0 10px 10px;
+        &:focus {
+          outline: none !important;
+        }
+      }
+    }
     @media screen and (min-width: 960px) {
       flex-direction: row;
       box-shadow: none;
       position: relative;
       width: 100%;
-      bottom: auto;
+      li:last-child {
+        border-radius: 0 0 0 0;
+      }
     }
   }
 `;
 
 const HeaderNav = () => {
+  const { navOpen, navItemArr } = useContext(NavContext);
+  const max960 = useMediaQuery({ maxWidth: 960 });
+
+  const menuVariants = {
+    closed: {
+      y: "calc(-1 * 100% + 38px)",
+    },
+    open: {
+      y: 0,
+    },
+  };
+
   return (
     <HeaderNavStyles>
-      <ul>{navItems}</ul>
+      <motion.ul
+        variants={menuVariants}
+        initial={max960 ? "closed" : "open"}
+        animate={max960 && navOpen ? "open" : max960 ? "closed" : "open"}
+        transition={{ type: "spring" }}
+      >
+        {navItems(navItemArr)}
+        {max960 && <HeaderNavToggle />}
+      </motion.ul>
     </HeaderNavStyles>
   );
 };

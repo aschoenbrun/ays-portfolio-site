@@ -4,6 +4,7 @@ import { PageContext } from "../Layouts/LayoutMain";
 import styled from "styled-components/macro";
 import { color } from "../GlobalStyles";
 import ButtonVidBG from "../Button/ButtonVidBg";
+import cldnyUrlTrans from "../../scripts/cldnyUrlTrans";
 
 const HeaderNavItemStyles = styled.li`
   display: block;
@@ -78,9 +79,15 @@ const HeaderNavItemStyles = styled.li`
       }
       a,
       button {
+        position: relative;
         @media screen and (min-width: 960px) {
           padding: 17px 15px 10px;
           background-color: ${color("orange", "greyLt")};
+          background-image: url(${cldnyUrlTrans(
+            "https://res.cloudinary.com/aschoen/image/upload/v1592410480/AYS%20Portfolio%20Site%20Images/background-of-stone-granite-and-igneous-rock_wodzrm.jpg",
+            "w_350,h_60,c_fill,f_auto,g_center,e_grayscale,o_10,q_auto,w_1920"
+          )});
+          cursor: context-menu;
         }
         div {
           opacity: 0;

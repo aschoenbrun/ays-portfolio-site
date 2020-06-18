@@ -1,22 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet";
 import GlobalStyles, { color } from "../GlobalStyles";
 import styled from "styled-components/macro";
 import { ListItemStyles } from "../ListItem";
 import { ListItemDivStyles } from "../ListItemDiv";
+import { useMediaQuery } from "react-responsive";
 
 export const PageContext = React.createContext();
+export const NavContext = React.createContext();
+
+const navItemArr = [
+  {
+    name: "About",
+    uri: "about",
+  },
+  {
+    name: "Resume",
+    uri: "resume",
+  },
+  {
+    name: "Gallery",
+    uri: "gallery",
+  },
+  {
+    name: "Contact",
+    uri: "contact",
+  },
+];
+
+const navHeight = `${navItemArr.length * 42 + 38}px`;
 
 const ContentStyles = styled.main`
+  position: relative;
   width: 95%;
-  margin: 0 auto;
+  margin: -${navHeight} auto 0;
   @media screen and (min-width: 1024px) {
     width: 960px;
   }
   @media screen and (min-width: 1350px) {
     width: 1150px;
+  }
+  @media screen and (min-width: 960px) {
+    margin-top: 0;
   }
   /*position: relative;*/
   transition: opacity 0.5s;
@@ -57,7 +85,26 @@ const ContentStyles = styled.main`
   }
 `;
 
+const MenuBg = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+`;
+
 const LayoutMain = ({ children, location }) => {
+  const [navOpen, setNavOpen] = useState(false);
+  const max960 = useMediaQuery({ maxWidth: 960 });
+  const MenuBgVariants = {
+    closed: {
+      opacity: 0,
+    },
+    open: {
+      opacity: 0.75,
+    },
+  };
   return (
     <PageContext.Provider value={location}>
       <GlobalStyles />
@@ -65,8 +112,20 @@ const LayoutMain = ({ children, location }) => {
         <Helmet>
           <title>Portfolio - Avi Schoenbrun</title>
         </Helmet>
-        <Header />
-        <ContentStyles>{children}</ContentStyles>
+        <NavContext.Provider value={{ navOpen, setNavOpen, navItemArr }}>
+          <Header />
+          <ContentStyles>{children}</ContentStyles>
+          <AnimatePresence>
+            {navOpen && max960 && (
+              <MenuBg
+                variants={MenuBgVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
+              />
+            )}
+          </AnimatePresence>
+        </NavContext.Provider>
       </div>
       <Footer id="site-footer" />
     </PageContext.Provider>
