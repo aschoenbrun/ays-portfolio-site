@@ -7,14 +7,14 @@ import { NavContext } from "../Layouts/LayoutMain";
 import { useMediaQuery } from "react-responsive";
 
 const ToggleStyles = styled.li`
-  margin-top: ${(props) => (props.max960 ? "4px" : 0)};
+  margin-top: ${(props) => (props.min960 ? 0 : "4px")};
   width: 100%;
   display: flex;
   width: 100%;
   font-size: 20px;
   &,
   button {
-    border-radius: ${(props) => (props.max960 ? "0 0 10px 10px" : "0 0 0 0")};
+    border-radius: ${(props) => (props.min960 ? "0 0 0 0" : "0 0 10px 10px")};
     &:focus {
       outline: none !important;
     }
@@ -23,7 +23,7 @@ const ToggleStyles = styled.li`
     display: flex;
     width: 100%;
     font-size: 20px;
-    padding: ${(props) => (props.max960 ? "6px 13px" : "7px 13px 6px")};
+    padding: ${(props) => (props.min960 ? "7px 13px 6px" : "6px 13px")};
   }
   @media screen and (min-width: 960px) {
     &,
@@ -40,9 +40,9 @@ const BtnIconWrap = styled(motion.div)`
 
 const HeaderNavToggle = () => {
   const { navOpen, setNavOpen, visible } = useContext(NavContext);
-  const max960 = useMediaQuery({ maxWidth: 960 });
+  const min960 = useMediaQuery({ minWidth: 960 });
 
-  const iconVariantsMobile = {
+  const iconVariants = {
     closed: {
       rotate: 0,
     },
@@ -51,11 +51,26 @@ const HeaderNavToggle = () => {
     },
   };
 
+  const toggleButtonVariants = {
+    closed: {
+      paddingTop: "55px",
+    },
+    open: {
+      paddingTop: "7px",
+    },
+  };
+
   return (
-    <ToggleStyles visible={visible} max960={max960}>
-      <ButtonStyles as="button" onClick={() => setNavOpen(!navOpen)}>
+    <ToggleStyles visible={visible} min960={min960}>
+      <ButtonStyles
+        as={motion.button}
+        initial="closed"
+        animate={navOpen ? "open" : "closed"}
+        onClick={() => setNavOpen(!navOpen)}
+        variants={min960 && toggleButtonVariants}
+      >
         <BtnIconWrap
-          variants={iconVariantsMobile}
+          variants={iconVariants}
           transition={{ type: "tween", duration: 0.75, delay: 0.5 }}
         >
           <MdFilterList />

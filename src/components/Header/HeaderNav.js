@@ -46,6 +46,9 @@ const HeaderNav = () => {
     },
     open: {
       y: 0,
+      transition: {
+        delay: max960 && 0.25,
+      },
     },
   };
 
@@ -55,7 +58,6 @@ const HeaderNav = () => {
         variants={menuVariants}
         initial={max960 ? "closed" : "open"}
         animate={max960 && navOpen ? "open" : max960 ? "closed" : "open"}
-        transition={{ type: "spring" }}
       >
         {navItems(navItemArr)}
         {(max960 || visible) && <HeaderNavToggle />}

@@ -3,7 +3,6 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet";
-import { Waypoint } from "react-waypoint";
 import GlobalStyles, { color } from "../GlobalStyles";
 import styled from "styled-components/macro";
 import { ListItemStyles } from "../ListItem";
@@ -32,12 +31,12 @@ const navItemArr = [
   },
 ];
 
-const navHeight = `${navItemArr.length * 42 + 38}px`;
+// const navHeight = `${navItemArr.length * 42 + 38 + 80}px`;
 
 const ContentStyles = styled.main`
   position: relative;
   width: 95%;
-  margin: -${navHeight} auto 0;
+  margin: 300px auto 0;
   @media screen and (min-width: 1024px) {
     width: 960px;
   }
@@ -45,7 +44,7 @@ const ContentStyles = styled.main`
     width: 1150px;
   }
   @media screen and (min-width: 960px) {
-    margin-top: 0;
+    margin-top: 275px;
   }
   /*position: relative;*/
   transition: opacity 0.5s;
@@ -99,6 +98,7 @@ const LayoutMain = ({ children, location }) => {
   const [navOpen, setNavOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const max960 = useMediaQuery({ maxWidth: 960 });
+  console.log(navOpen);
   const MenuBgVariants = {
     closed: {
       opacity: 0,
@@ -106,14 +106,6 @@ const LayoutMain = ({ children, location }) => {
     open: {
       opacity: 0.75,
     },
-  };
-
-  const handleLeave = () => {
-    setVisible(true);
-  };
-
-  const handleEnter = () => {
-    setVisible(false);
   };
 
   return (
@@ -127,7 +119,6 @@ const LayoutMain = ({ children, location }) => {
           value={{ navOpen, setNavOpen, navItemArr, visible, setVisible }}
         >
           <Header />
-          <Waypoint onEnter={handleEnter} onLeave={handleLeave} />
           <ContentStyles>{children}</ContentStyles>
           <AnimatePresence>
             {navOpen && max960 && (

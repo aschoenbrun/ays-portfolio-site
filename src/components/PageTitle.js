@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/macro";
 import { color } from "./GlobalStyles";
 import { motion } from "framer-motion";
+import { Waypoint } from "react-waypoint";
+import { NavContext } from "./Layouts/LayoutMain";
 
 export const PageTitleStyles = styled.h1`
   color: ${color("blue")};
@@ -85,6 +87,16 @@ const PTWaveItem = ({ type }) => {
 };
 
 const PageTitle = ({ children }) => {
+  const { setVisible } = useContext(NavContext);
+
+  const handleLeave = () => {
+    setVisible(true);
+  };
+
+  const handleEnter = () => {
+    setVisible(false);
+  };
+
   return (
     <>
       <PageTitleStyles>{children}</PageTitleStyles>
@@ -96,6 +108,12 @@ const PageTitle = ({ children }) => {
         <PTWaveItem type={"mid"} />
         <PTWaveItem type={"outer"} />
       </PageTitleDivStyles>
+
+      <Waypoint
+        onEnter={handleEnter}
+        onLeave={handleLeave}
+        topOffset="-100px"
+      />
     </>
   );
 };

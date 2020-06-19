@@ -4,34 +4,60 @@ import HeaderBartop from "./HeaderBarTop";
 import HeaderBarBottom from "./HeaderBarBottom";
 import HeaderNav from "./HeaderNav";
 import { NavContext } from "../Layouts/LayoutMain";
+import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 
-const HeaderStyles = styled.header`
+const HeaderStyles = styled(motion.header)`
   color: white;
   padding: 0;
   position: relative;
   width: 100%;
   z-index: 3000;
-  margin-bottom: 80px;
-  @media screen and (min-width: 960px) {
-    margin-bottom: 50px;
-    &.scrolled {
-      position: fixed;
-      top: 0;
-    }
-  }
+  position: fixed;
+  top: 0;
 `;
 
 const Header = () => {
-  const { visible } = useContext(NavContext);
+  const { visible, navOpen } = useContext(NavContext);
   const headerPosRef = useRef();
+  const min960 = useMediaQuery({ minWidth: 960 });
   useEffect(() => {
     visible
       ? headerPosRef.current.classList.add("scrolled")
       : headerPosRef.current.classList.remove("scrolled");
   }, [visible]);
 
+  const scrolledHeaderVariantsMobile = {
+    closed: {
+      top: -203,
+      transition: { when: "afterChildren" },
+    },
+    open: {
+      top: 0,
+    },
+  };
+
+  const scrolledHeaderVariantsDesktop = {
+    closed: {
+      top: -125,
+    },
+    open: {
+      top: 0,
+    },
+  };
+
   return (
-    <HeaderStyles visible={visible} ref={headerPosRef}>
+    <HeaderStyles
+      visible={visible}
+      ref={headerPosRef}
+      variants={
+        min960 ? scrolledHeaderVariantsDesktop : scrolledHeaderVariantsMobile
+      }
+      animate={
+        navOpen && visible ? "open" : !navOpen && visible ? "closed" : "open"
+      }
+      transition={{ type: "tween" }}
+    >
       <HeaderBartop />
       <HeaderBarBottom />
       <HeaderNav />
