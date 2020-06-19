@@ -35,7 +35,7 @@ const navItemArr = [
 
 const ContentStyles = styled.main`
   position: relative;
-  width: 95%;
+  width: 85%;
   margin: 300px auto 0;
   @media screen and (min-width: 1024px) {
     width: 960px;
@@ -49,11 +49,6 @@ const ContentStyles = styled.main`
   /*position: relative;*/
   transition: opacity 0.5s;
   background-color: white;
-  .header--fixed & {
-    @media screen and (min-width: 960px) {
-      margin-top: 250px;
-    }
-  }
   section {
     margin-bottom: 75px;
   }
@@ -70,10 +65,6 @@ const ContentStyles = styled.main`
     margin: 60px 0 20px;
   }
   .react-markdown {
-    padding: 0 6%;
-    @media screen and (min-width: 1024px) {
-      padding: 0;
-    }
     ul {
       list-style-type: none;
       padding: 0;

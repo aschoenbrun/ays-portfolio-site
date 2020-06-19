@@ -16,24 +16,30 @@ const ResItemListItem = styled.li`
 
 const InfoStyles = styled.span`
   display: block;
+  margin-bottom: 5px;
+  @media screen and (min-width: 760px) {
+    margin-bottom: 0;
+  }
 `;
 
 const InfoDivStyles = styled.span`
   display: none;
+  margin: -1px 13px 0 10px;
+  margin-bottom: 0;
+  font-size: 11px;
+  font-weight: 100;
+  letter-spacing: -0.1em;
+  color: ${color("tan", "lt")};
   @media screen and (min-width: 760px) {
     display: block;
-    margin: -1px 13px 0 10px;
-    margin-bottom: 0;
-    font-size: 11px;
-    font-weight: 100;
-    letter-spacing: -0.1em;
-    color: ${color("tan", "lt")};
   }
 `;
 
 const InfoToStyles = styled(InfoDivStyles)`
+  display: block;
+  margin: -8px 7px 0 4px;
   @media screen and (min-width: 760px) {
-    margin: -1px 7px 0 4px;
+    margin-top: -1px;
   }
 `;
 
@@ -43,7 +49,17 @@ const ResItemSubListUl = styled.ul`
   margin: 0 0 25px;
   display: flex;
   flex-direction: ${(props) => props.dir.secItemList};
+  flex-wrap: wrap;
   margin: ${(props) => props.dir.ulMargin};
+`;
+
+const InfoItemListLineBreak = styled.div`
+  display: block;
+  flex-basis: 100%;
+  height: 0;
+  @media screen and (min-width: 760px) {
+    display: none;
+  }
 `;
 
 const ResItemList = ({ resSection, dir }) => {
@@ -108,9 +124,11 @@ const ResItemList = ({ resSection, dir }) => {
         return (
           <SectionSubTitleDesc>
             {info(company, true)}
+            <InfoItemListLineBreak />
             {item.__typename === "SanityResumeEducation"
               ? info(location)
               : info(location, true)}
+            <InfoItemListLineBreak />
             {info(dateStart, false, true)}
             {info(dateEnd)}
             {info(currentPosition)}
