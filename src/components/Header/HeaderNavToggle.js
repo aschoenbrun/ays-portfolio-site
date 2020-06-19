@@ -8,14 +8,14 @@ import { NavContext } from "../Layouts/LayoutMain";
 import { useMediaQuery } from "react-responsive";
 
 const ToggleStyles = styled.li`
-  margin-top: ${(props) => (props.min960 ? 0 : "4px")};
+  margin-top: ${(props) => (props.min760 ? 0 : "4px")};
   width: 100%;
   display: flex;
   width: 100%;
   font-size: 20px;
   &,
   button {
-    border-radius: ${(props) => (props.min960 ? "0 0 0 0" : "0 0 10px 10px")};
+    border-radius: ${(props) => (props.min760 ? "0 0 0 0" : "0 0 10px 10px")};
     &:focus {
       outline: none !important;
     }
@@ -24,9 +24,9 @@ const ToggleStyles = styled.li`
     display: flex;
     width: 100%;
     font-size: 20px;
-    padding: ${(props) => (props.min960 ? "7px 13px 6px" : "6px 13px")};
+    padding: ${(props) => (props.min760 ? "7px 13px 6px" : "6px 13px")};
   }
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 760px) {
     &,
     button {
       border-radius: 0 0 0 0;
@@ -41,7 +41,7 @@ const BtnIconWrap = styled(motion.div)`
 
 const HeaderNavToggle = () => {
   const { navOpen, setNavOpen, visible } = useContext(NavContext);
-  const min960 = useMediaQuery({ minWidth: 960 });
+  const min760 = useMediaQuery({ minWidth: 760 });
   const hoverClassRef = useRef("");
   const [hover, setHover] = useState(false);
   useEffect(() => {
@@ -69,13 +69,13 @@ const HeaderNavToggle = () => {
   };
 
   return (
-    <ToggleStyles visible={visible} min960={min960}>
+    <ToggleStyles visible={visible} min760={min760}>
       <ButtonStyles
         as={motion.button}
         initial="closed"
         animate={navOpen ? "open" : "closed"}
         onClick={() => setNavOpen(!navOpen)}
-        variants={min960 && toggleButtonVariants}
+        variants={min760 && toggleButtonVariants}
         ref={hoverClassRef}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}

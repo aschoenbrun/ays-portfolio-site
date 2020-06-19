@@ -38,12 +38,12 @@ const ContentStyles = styled.main`
   width: 85%;
   margin: 300px auto 0;
   @media screen and (min-width: 1024px) {
-    width: 960px;
+    width: 760px;
   }
   @media screen and (min-width: 1350px) {
     width: 1150px;
   }
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 760px) {
     margin-top: 275px;
   }
   /*position: relative;*/
@@ -92,7 +92,7 @@ const MenuBg = styled(motion.div)`
 const LayoutMain = ({ children, location }) => {
   const [navOpen, setNavOpen] = useState(false);
   const [visible, setVisible] = useState(false);
-  const max960 = useMediaQuery({ maxWidth: 960 });
+  const max760 = useMediaQuery({ maxWidth: 760 });
   console.log(navOpen);
   const MenuBgVariants = {
     closed: {
@@ -116,7 +116,7 @@ const LayoutMain = ({ children, location }) => {
           <Header />
           <ContentStyles>{children}</ContentStyles>
           <AnimatePresence>
-            {navOpen && max960 && (
+            {navOpen && max760 && (
               <MenuBg
                 variants={MenuBgVariants}
                 initial="closed"

@@ -20,7 +20,7 @@ const HeaderStyles = styled(motion.header)`
 const Header = () => {
   const { visible, navOpen } = useContext(NavContext);
   const headerPosRef = useRef();
-  const min960 = useMediaQuery({ minWidth: 960 });
+  const min760 = useMediaQuery({ minWidth: 760 });
   useEffect(() => {
     visible
       ? headerPosRef.current.classList.add("scrolled")
@@ -51,7 +51,7 @@ const Header = () => {
       visible={visible}
       ref={headerPosRef}
       variants={
-        min960 ? scrolledHeaderVariantsDesktop : scrolledHeaderVariantsMobile
+        min760 ? scrolledHeaderVariantsDesktop : scrolledHeaderVariantsMobile
       }
       animate={
         navOpen && visible ? "open" : !navOpen && visible ? "closed" : "open"

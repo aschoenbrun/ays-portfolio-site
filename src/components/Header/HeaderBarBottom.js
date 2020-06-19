@@ -24,8 +24,6 @@ const HeaderContactInfoStyles = styled.ul`
   list-style-type: none;
   @media screen and (min-width: 760px) {
     flex-direction: row;
-  }
-  @media screen and (min-width: 960px) {
     .scrolled & {
       padding: 13px;
       li {

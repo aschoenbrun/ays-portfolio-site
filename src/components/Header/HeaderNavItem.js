@@ -16,7 +16,7 @@ const HeaderNavItemStyles = styled.li`
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
   transition: 0.25s ease-out;
   cursor: pointer;
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 760px) {
     width: auto;
     margin: 0 6px 4px 0;
     box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
@@ -27,12 +27,12 @@ const HeaderNavItemStyles = styled.li`
   }
   &:hover,
   &:focus {
-    @media screen and (min-width: 960px) {
+    @media screen and (min-width: 760px) {
       margin-bottom: 0;
       box-shadow: 0px 0.25px 2px 0px rgba(0, 0, 0, 0.5);
     }
   }
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 760px) {
     &:active {
       margin-bottom: -1;
       box-shadow: 0px 0.1px 1px 0px rgba(0, 0, 0, 0.5);
@@ -53,18 +53,18 @@ const HeaderNavItemStyles = styled.li`
     transition: 0.5s;
     position: relative;
     z-index: 1;
-    @media screen and (min-width: 960px) {
+    @media screen and (min-width: 760px) {
       padding: 13px 15px 10px;
     }
     &:hover,
     &:focus {
       color: ${color("tan", "dk")};
-      @media screen and (min-width: 960px) {
+      @media screen and (min-width: 760px) {
         padding: 17px 15px 10px;
       }
     }
     &:active {
-      @media screen and (min-width: 960px) {
+      @media screen and (min-width: 760px) {
         padding: 18px 15px 9px;
       }
     }
@@ -74,13 +74,13 @@ const HeaderNavItemStyles = styled.li`
     &:hover,
     &:focus {
       box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
-      @media screen and (min-width: 960px) {
+      @media screen and (min-width: 760px) {
         box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
       }
       a,
       button {
         position: relative;
-        @media screen and (min-width: 960px) {
+        @media screen and (min-width: 760px) {
           padding: 17px 15px 10px;
           background-color: ${color("orange", "greyLt")};
           background-image: url(${cldnyUrlTrans(

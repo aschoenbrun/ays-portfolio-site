@@ -18,7 +18,7 @@ const HeaderBarTopStyles = styled.div`
     justify-content: center;
   }
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 760px) {
     .scrolled & {
       h2,
       h3 {

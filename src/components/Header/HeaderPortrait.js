@@ -20,8 +20,6 @@ const HeaderPortraitStyle = styled.div`
   background-image: url("${(props) => props.portrait}");
   @media screen and (min-width: 760px) {
     margin-right: 20px;
-  }
-  @media screen and (min-width: 960px) {
     .scrolled & {
       height: ${fxdHeaderImgDims};
       width: ${fxdHeaderImgDims};

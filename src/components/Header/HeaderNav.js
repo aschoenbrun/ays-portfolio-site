@@ -27,7 +27,7 @@ const HeaderNavStyles = styled(motion.nav)`
     transition: 0.5s;
     margin: 0 1px;
     list-style-type: none;
-    @media screen and (min-width: 960px) {
+    @media screen and (min-width: 760px) {
       flex-direction: row;
       box-shadow: none;
       position: relative;
@@ -38,7 +38,7 @@ const HeaderNavStyles = styled(motion.nav)`
 
 const HeaderNav = () => {
   const { navOpen, navItemArr, visible } = useContext(NavContext);
-  const max960 = useMediaQuery({ maxWidth: 960 });
+  const max760 = useMediaQuery({ maxWidth: 760 });
 
   const menuVariants = {
     closed: {
@@ -47,7 +47,7 @@ const HeaderNav = () => {
     open: {
       y: 0,
       transition: {
-        delay: max960 && 0.25,
+        delay: max760 && 0.25,
       },
     },
   };
@@ -55,12 +55,12 @@ const HeaderNav = () => {
   return (
     <HeaderNavStyles
       variants={menuVariants}
-      initial={max960 ? "closed" : "open"}
-      animate={max960 && navOpen ? "open" : max960 ? "closed" : "open"}
+      initial={max760 ? "closed" : "open"}
+      animate={max760 && navOpen ? "open" : max760 ? "closed" : "open"}
     >
       <ul>
         {navItems(navItemArr)}
-        {(max960 || visible) && <HeaderNavToggle />}
+        {(max760 || visible) && <HeaderNavToggle />}
       </ul>
     </HeaderNavStyles>
   );
