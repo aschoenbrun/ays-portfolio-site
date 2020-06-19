@@ -17,17 +17,20 @@ const HeaderBarTopStyles = styled.div`
   @media screen and (min-width: 420px) {
     justify-content: center;
   }
-  .headroom--scrolled & {
-    h2,
-    h3 {
-      display: inline;
-    }
-    h2 {
-      font-size: 20px;
-      margin-right: 25px;
-    }
-    h3 {
-      font-size: 12px;
+
+  @media screen and (min-width: 960px) {
+    .scrolled & {
+      h2,
+      h3 {
+        display: inline;
+      }
+      h2 {
+        font-size: 20px;
+        margin-right: 25px;
+      }
+      h3 {
+        font-size: 11px;
+      }
     }
   }
 `;

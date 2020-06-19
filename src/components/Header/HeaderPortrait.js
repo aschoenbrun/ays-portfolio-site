@@ -21,12 +21,14 @@ const HeaderPortraitStyle = styled.div`
   @media screen and (min-width: 760px) {
     margin-right: 20px;
   }
-  .headroom--scrolled & {
-    height: ${fxdHeaderImgDims};
-    width: ${fxdHeaderImgDims};
-    margin-bottom: -5px;
-    margin-right: 15px;
-    box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
+  @media screen and (min-width: 960px) {
+    .scrolled & {
+      height: ${fxdHeaderImgDims};
+      width: ${fxdHeaderImgDims};
+      margin-bottom: -5px;
+      margin-right: 15px;
+      box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
+    }
   }
 `;
 

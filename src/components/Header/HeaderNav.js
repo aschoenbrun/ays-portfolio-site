@@ -27,29 +27,17 @@ const HeaderNavStyles = styled.nav`
     transition: 0.5s;
     margin: 0 1px;
     list-style-type: none;
-    li:last-child {
-      &,
-      button {
-        border-radius: 0 0 10px 10px;
-        &:focus {
-          outline: none !important;
-        }
-      }
-    }
     @media screen and (min-width: 960px) {
       flex-direction: row;
       box-shadow: none;
       position: relative;
       width: 100%;
-      li:last-child {
-        border-radius: 0 0 0 0;
-      }
     }
   }
 `;
 
 const HeaderNav = () => {
-  const { navOpen, navItemArr } = useContext(NavContext);
+  const { navOpen, navItemArr, visible } = useContext(NavContext);
   const max960 = useMediaQuery({ maxWidth: 960 });
 
   const menuVariants = {
@@ -70,7 +58,7 @@ const HeaderNav = () => {
         transition={{ type: "spring" }}
       >
         {navItems(navItemArr)}
-        {max960 && <HeaderNavToggle />}
+        {(max960 || visible) && <HeaderNavToggle />}
       </motion.ul>
     </HeaderNavStyles>
   );

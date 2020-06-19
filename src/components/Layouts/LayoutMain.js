@@ -9,7 +9,6 @@ import styled from "styled-components/macro";
 import { ListItemStyles } from "../ListItem";
 import { ListItemDivStyles } from "../ListItemDiv";
 import { useMediaQuery } from "react-responsive";
-import ScrollToTop from "../ScrollToTop";
 
 export const PageContext = React.createContext();
 export const NavContext = React.createContext();
@@ -98,7 +97,7 @@ const MenuBg = styled(motion.div)`
 
 const LayoutMain = ({ children, location }) => {
   const [navOpen, setNavOpen] = useState(false);
-  const [headerType, setHeaderType] = useState("lg");
+  const [visible, setVisible] = useState(false);
   const max960 = useMediaQuery({ maxWidth: 960 });
   const MenuBgVariants = {
     closed: {
@@ -110,12 +109,13 @@ const LayoutMain = ({ children, location }) => {
   };
 
   const handleLeave = () => {
-    setHeaderType("sm");
+    setVisible(true);
   };
 
   const handleEnter = () => {
-    setHeaderType("lg");
+    setVisible(false);
   };
+
   return (
     <PageContext.Provider value={location}>
       <GlobalStyles />
@@ -123,8 +123,10 @@ const LayoutMain = ({ children, location }) => {
         <Helmet>
           <title>Portfolio - Avi Schoenbrun</title>
         </Helmet>
-        <NavContext.Provider value={{ navOpen, setNavOpen, navItemArr }}>
-          <Header headerType={headerType} />
+        <NavContext.Provider
+          value={{ navOpen, setNavOpen, navItemArr, visible, setVisible }}
+        >
+          <Header />
           <Waypoint onEnter={handleEnter} onLeave={handleLeave} />
           <ContentStyles>{children}</ContentStyles>
           <AnimatePresence>
@@ -138,7 +140,6 @@ const LayoutMain = ({ children, location }) => {
             )}
           </AnimatePresence>
         </NavContext.Provider>
-        <ScrollToTop />
       </div>
       <Footer id="site-footer" />
     </PageContext.Provider>

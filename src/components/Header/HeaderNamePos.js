@@ -46,6 +46,12 @@ const HeaderPosStyle = styled.li`
       border-right: 1px solid ${color("tan")};
     }
   }
+  @media screen and (min-width: 960px) {
+    .scrolled & {
+      padding-right: calc(${roleSpacing} - 0.5rem);
+      margin-right: calc(${roleSpacing} - 0.5rem);
+    }
+  }
 `;
 
 const HeaderPos = ({ titleArr }) => {

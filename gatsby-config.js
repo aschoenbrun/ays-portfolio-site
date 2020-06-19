@@ -64,6 +64,7 @@ module.exports = {
       },
     },
     "gatsby-plugin-sharp",
+    `gatsby-plugin-smoothscroll`,
     // {
     //   resolve: "gatsby-plugin-manifest",
     //   options: {
