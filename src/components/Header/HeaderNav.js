@@ -13,7 +13,7 @@ const navItems = (navItemArr) =>
 
 // TODO: Check nav cross-browser compatability
 
-const HeaderNavStyles = styled.nav`
+const HeaderNavStyles = styled(motion.nav)`
   width: 200px;
   margin: 0 auto;
   ul {
@@ -53,15 +53,15 @@ const HeaderNav = () => {
   };
 
   return (
-    <HeaderNavStyles>
-      <motion.ul
-        variants={menuVariants}
-        initial={max960 ? "closed" : "open"}
-        animate={max960 && navOpen ? "open" : max960 ? "closed" : "open"}
-      >
+    <HeaderNavStyles
+      variants={menuVariants}
+      initial={max960 ? "closed" : "open"}
+      animate={max960 && navOpen ? "open" : max960 ? "closed" : "open"}
+    >
+      <ul>
         {navItems(navItemArr)}
         {(max960 || visible) && <HeaderNavToggle />}
-      </motion.ul>
+      </ul>
     </HeaderNavStyles>
   );
 };

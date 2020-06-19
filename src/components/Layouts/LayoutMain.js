@@ -70,6 +70,10 @@ const ContentStyles = styled.main`
     margin: 60px 0 20px;
   }
   .react-markdown {
+    padding: 0 6%;
+    @media screen and (min-width: 1024px) {
+      padding: 0;
+    }
     ul {
       list-style-type: none;
       padding: 0;

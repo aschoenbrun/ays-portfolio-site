@@ -41,7 +41,7 @@ const HeaderNavItemStyles = styled.li`
   a,
   button {
     color: ${color("tan", "dk")};
-    background-color: transparent;
+    background-color: ${color("yellow")};
     box-shadow: none;
     display: block;
     padding: 13px 0;

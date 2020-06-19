@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import { motion } from "framer-motion";
 import { ButtonStyles } from "../Button/Button";
+import ButtonVidBg from "../Button/ButtonVidBg";
 import { MdFilterList } from "react-icons/md";
 import { NavContext } from "../Layouts/LayoutMain";
 import { useMediaQuery } from "react-responsive";
@@ -41,6 +42,13 @@ const BtnIconWrap = styled(motion.div)`
 const HeaderNavToggle = () => {
   const { navOpen, setNavOpen, visible } = useContext(NavContext);
   const min960 = useMediaQuery({ minWidth: 960 });
+  const hoverClassRef = useRef("");
+  const [hover, setHover] = useState(false);
+  useEffect(() => {
+    hover
+      ? hoverClassRef.current.classList.add("hover")
+      : hoverClassRef.current.classList.remove("hover");
+  }, [hover]);
 
   const iconVariants = {
     closed: {
@@ -68,7 +76,11 @@ const HeaderNavToggle = () => {
         animate={navOpen ? "open" : "closed"}
         onClick={() => setNavOpen(!navOpen)}
         variants={min960 && toggleButtonVariants}
+        ref={hoverClassRef}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
       >
+        <ButtonVidBg />
         <BtnIconWrap
           variants={iconVariants}
           transition={{ type: "tween", duration: 0.75, delay: 0.5 }}

@@ -109,11 +109,7 @@ const PageTitle = ({ children }) => {
         <PTWaveItem type={"outer"} />
       </PageTitleDivStyles>
 
-      <Waypoint
-        onEnter={handleEnter}
-        onLeave={handleLeave}
-        topOffset="-100px"
-      />
+      <Waypoint onEnter={handleEnter} onLeave={handleLeave} topOffset="200px" />
     </>
   );
 };
