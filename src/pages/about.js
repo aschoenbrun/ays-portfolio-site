@@ -11,7 +11,7 @@ const AboutMe = ({ data, location }) => {
   const { pageTitle, intro, content } = pageData;
 
   return (
-    <LayoutMain location={location}>
+    <LayoutMain location={location} pageData={pageData}>
       <PageTitle>{pageTitle}</PageTitle>
       <PageIntro>{intro}</PageIntro>
       <ReactMarkdown source={content} className="react-markdown" />

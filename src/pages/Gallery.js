@@ -43,7 +43,7 @@ const Gallery = ({ data, location }) => {
   });
 
   return (
-    <LayoutMain location={location}>
+    <LayoutMain location={location} pageData={pageData}>
       <PageTitle>{pageTitle}</PageTitle>
       <PageIntro centerIntro={centerIntro}>{intro}</PageIntro>
       <GalleryStyles>{galleryList}</GalleryStyles>

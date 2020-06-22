@@ -10,7 +10,7 @@ const Contact = ({ data, location }) => {
   const { pageTitle, intro, centerIntro } = pageData;
 
   return (
-    <LayoutMain location={location}>
+    <LayoutMain location={location} pageData={pageData}>
       <PageTitle>{pageTitle}</PageTitle>
       <PageIntro centerIntro={centerIntro}>{intro}</PageIntro>
       <ContactForm />

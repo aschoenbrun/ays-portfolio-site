@@ -5,7 +5,7 @@ export default function Home({ data, location }) {
   // const { sanityPage: pageData } = data;
 
   return (
-    <LayoutMain location={location}>
+    <LayoutMain location={location} pageData={data}>
       <h1>Hello Gatsby!</h1>
       <p>Is this working?</p>
     </LayoutMain>

@@ -14,7 +14,7 @@ const Resume = ({ data, location }) => {
 
   return (
     <ResListContext.Provider value={sections}>
-      <LayoutMain location={location}>
+      <LayoutMain location={location} pageData={pageData}>
         <PageTitle>{pageTitle}</PageTitle>
         <PageIntro
           btnText="Download Resume"

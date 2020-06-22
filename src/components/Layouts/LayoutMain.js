@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { motion, AnimatePresence } from "framer-motion";
-import { Helmet } from "react-helmet";
+import HeaderMeta from "../Header/HeaderMeta";
 import GlobalStyles, { color } from "../GlobalStyles";
 import styled from "styled-components/macro";
 import { ListItemStyles } from "../ListItem";
@@ -89,11 +89,10 @@ const MenuBg = styled(motion.div)`
   background-color: black;
 `;
 
-const LayoutMain = ({ children, location }) => {
+const LayoutMain = ({ children, location, pageData }) => {
   const [navOpen, setNavOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const max760 = useMediaQuery({ maxWidth: 760 });
-  console.log(navOpen);
   const MenuBgVariants = {
     closed: {
       opacity: 0,
@@ -104,12 +103,10 @@ const LayoutMain = ({ children, location }) => {
   };
 
   return (
-    <PageContext.Provider value={location}>
+    <PageContext.Provider value={{ location, pageData }}>
       <GlobalStyles />
       <div id="sticky-footer__body">
-        <Helmet>
-          <title>Portfolio - Avi Schoenbrun</title>
-        </Helmet>
+        <HeaderMeta />
         <NavContext.Provider
           value={{ navOpen, setNavOpen, navItemArr, visible, setVisible }}
         >

@@ -54,7 +54,7 @@ const HeaderPosStyle = styled.li`
 
 const HeaderPos = ({ titleArr }) => {
   const titles = titleArr.map((title) => {
-    return <HeaderPosStyle key={title}>{title}</HeaderPosStyle>;
+    return <HeaderPosStyle key={title.name}>{title.name}</HeaderPosStyle>;
   });
   return (
     <HeaderPosWrapperStyle>
@@ -68,7 +68,10 @@ const HeaderNamePos = () => {
     query {
       sanityMyInfo {
         name
-        titles
+        titles {
+          name
+          occuCode
+        }
       }
     }
   `;
