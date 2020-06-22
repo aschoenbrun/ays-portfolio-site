@@ -29,12 +29,10 @@ function generateError(code, err) {
 }
 
 function generateEmailParams(body) {
-  const { email, name, content } = JSON.parse(body);
-  console.log(email, name, content);
-  if (!(email && name && content)) {
-    throw new Error(
-      "Missing parameters! Make sure to add parameters 'email', 'name', 'content'."
-    );
+  const { firstName, lastName, email, message } = JSON.parse(body);
+  console.log(firstName, lastName, email, message);
+  if (!(firstName && lastName && email && message)) {
+    throw new Error("Missing parameters!.");
   }
 
   return {
@@ -45,7 +43,7 @@ function generateEmailParams(body) {
       Body: {
         Text: {
           Charset: "UTF-8",
-          Data: `Message sent from email ${email} by ${name} \nContent: ${content}`,
+          Data: `Message sent from email ${email} by ${firstName} ${lastName} \nContent: ${message}`,
         },
       },
       Subject: {

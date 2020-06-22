@@ -64,20 +64,30 @@ module.exports = {
       },
     },
     "gatsby-plugin-sharp",
-    `gatsby-plugin-smoothscroll`,
-    // {
-    //   resolve: "gatsby-plugin-manifest",
-    //   options: {
-    //     name: "Lakewood Courier Website",
-    //     short_name: "Lakewood Courier",
-    //     start_url: "/",
-    //     background_color: "white",
-    //     theme_color: "rgb(59, 86, 166)",
-    //     display: "standalone",
-    //     icon: "src/images/favicon.png",
-    //     cache_busting_mode: "none",
-    //   },
-    // },
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: "Avi Schoenbrun's Portfolio",
+        short_name: "AYS Portfolio",
+        start_url: "/",
+        background_color: "white",
+        theme_color: "rgb(0, 31, 43)",
+        display: "standalone",
+        icon: "src/images/favicon.png",
+        cache_busting_mode: "none",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: "UA-170386036-1",
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: false,
+        // Defers execution of google analytics script after page load
+        defer: true,
+      },
+    },
     "gatsby-plugin-offline",
     "gatsby-plugin-smoothscroll",
     "gatsby-plugin-react-helmet",

@@ -41,8 +41,10 @@ const HeaderPortrait = () => {
     }
   `;
 
+  const staticQuery = useStaticQuery(query);
+
   // prettier-ignore
-  const portraitUrl = useStaticQuery(query).sanityMyInfo.portrait.cloudinaryUrlField;
+  const portraitUrl = staticQuery.sanityMyInfo.portrait.cloudinaryUrlField;
 
   const portrait = cldnyUrlTrans(portraitUrl, "w_300,h_300,c_fill,f_auto");
 

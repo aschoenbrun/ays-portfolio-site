@@ -76,8 +76,10 @@ const HeaderNamePos = () => {
     }
   `;
 
-  const name = useStaticQuery(query).sanityMyInfo.name;
-  const titles = useStaticQuery(query).sanityMyInfo.titles;
+  const staticQuery = useStaticQuery(query);
+
+  const name = staticQuery.sanityMyInfo.name;
+  const titles = staticQuery.sanityMyInfo.titles;
 
   return (
     <HeaderInfoWrapper>

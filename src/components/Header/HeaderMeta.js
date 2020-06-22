@@ -23,9 +23,10 @@ const HeaderMeta = () => {
     }
   `;
 
-  const { name, email, phone, titles } = useStaticQuery(query).sanityMyInfo;
-  const description = useStaticQuery(query).sanitySiteInfo.siteSEO
-    .metaDescription;
+  const staticQuery = useStaticQuery(query);
+
+  const { name, email, phone, titles } = staticQuery.sanityMyInfo;
+  const description = staticQuery.sanitySiteInfo.siteSEO.metaDescription;
   const { location, pageData } = useContext(PageContext);
   const { pageTitle } = pageData;
   const { href } = location;
@@ -50,8 +51,6 @@ const HeaderMeta = () => {
     descripton: description,
     hasOccupation: occupations,
   };
-
-  console.log(occupations);
 
   return (
     <Helmet>

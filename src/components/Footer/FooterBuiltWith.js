@@ -53,7 +53,9 @@ const FooterBuiltWith = () => {
     }
   `;
 
-  const builtWithItemArr = useStaticQuery(query).sanitySiteInfo.builtWith;
+  const staticQuery = useStaticQuery(query);
+
+  const builtWithItemArr = staticQuery.sanitySiteInfo.builtWith;
 
   const builtWithList = builtWithItemArr.map((builtWithItem) => {
     return (

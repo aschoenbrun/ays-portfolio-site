@@ -15,7 +15,7 @@ export const NavContext = React.createContext();
 const navItemArr = [
   {
     name: "About",
-    uri: "about",
+    uri: "", // HOME
   },
   {
     name: "Resume",

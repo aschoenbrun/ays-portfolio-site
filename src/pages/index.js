@@ -1,16 +1,26 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import { graphql } from "gatsby";
+import PageTitle from "../components/PageTitle";
 import LayoutMain from "../components/Layouts/LayoutMain";
-export default function Home({ data, location }) {
-  // const { sanityPage: pageData } = data;
+import PageIntro from "../components/PageIntro";
+import Button from "../components/Button/Button";
+
+const AboutMe = ({ data, location }) => {
+  const { sanityPage: pageData } = data;
+  const { pageTitle, intro, content } = pageData;
 
   return (
-    <LayoutMain location={location} pageData={data}>
-      <h1>Hello Gatsby!</h1>
-      <p>Is this working?</p>
+    <LayoutMain location={location} pageData={pageData}>
+      <PageTitle>{pageTitle}</PageTitle>
+      <PageIntro>{intro}</PageIntro>
+      <ReactMarkdown source={content} className="react-markdown" />
+      <Button text="View Resume" url="/resume/" target="_parent" />
     </LayoutMain>
   );
-}
+};
+
+export default AboutMe;
 
 export const query = graphql`
   query {

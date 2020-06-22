@@ -59,7 +59,9 @@ const HeaderBarBottom = () => {
     }
   `;
 
-  const contactArr = Object.entries(useStaticQuery(query).sanityMyInfo);
+  const staticQuery = useStaticQuery(query);
+
+  const contactArr = Object.entries(staticQuery.sanityMyInfo);
   const contactList = contactArr.map(([key, value]) => {
     let href, niceVal;
     switch (key) {
