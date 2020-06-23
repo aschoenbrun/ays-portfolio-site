@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import ButtonVidBg from "./ButtonVidBg";
-import { Image, Transformation } from "cloudinary-react";
+import cldnyUrlTrans from "../../scripts/cldnyUrlTrans";
 import styled from "styled-components/macro";
 import { color } from "../GlobalStyles";
 
@@ -46,7 +46,7 @@ export const ButtonStyles = styled.a`
   }
 `;
 
-const Button = ({ url, target, rel, iconPubId, text, type, classes }) => {
+const Button = ({ url, target, rel, iconUrl, text, type, classes }) => {
   const hoverClassRef = useRef("");
   const [hover, setHover] = useState(false);
 
@@ -73,17 +73,11 @@ const Button = ({ url, target, rel, iconPubId, text, type, classes }) => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      {iconPubId && (
-        <Image cloudName="aschoen" alt={text} publicId={iconPubId}>
-          <Transformation
-            height="20"
-            width="20"
-            crop="scale"
-            format="png"
-            fetch="auto"
-            quality="auto"
-          />
-        </Image>
+      {iconUrl && (
+        <img
+          src={cldnyUrlTrans(iconUrl, "w_20,h_20,c_scale,f_png,q_auto")}
+          alt={text}
+        />
       )}
       <span>{text}</span>
       <ButtonVidBg />
