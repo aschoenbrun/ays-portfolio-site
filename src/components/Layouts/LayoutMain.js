@@ -19,15 +19,15 @@ const navItemArr = [
   },
   {
     name: "Resume",
-    uri: "resume",
+    uri: "Resume",
   },
   {
     name: "Gallery",
-    uri: "gallery",
+    uri: "Gallery",
   },
   {
     name: "Contact",
-    uri: "contact",
+    uri: "Contact",
   },
 ];
 
