@@ -34,35 +34,6 @@ module.exports = {
         watchMode: true,
       },
     },
-    {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        google: {
-          families: [
-            "Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap",
-            "Fira+Code:wght@300;400;500;600;700&display=swap",
-          ],
-        },
-        classes: false,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        // The property ID; the tracking code won't be generated without it
-        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID,
-        // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: false,
-        // Setting this parameter is optional
-        anonymize: true,
-        // Setting this parameter is also optional
-        respectDNT: true,
-        // Delays sending pageview hits on route update (in milliseconds)
-        pageTransitionDelay: 0,
-        // Defers execution of google analytics script after page load
-        defer: false,
-      },
-    },
     "gatsby-plugin-sharp",
     {
       resolve: "gatsby-plugin-manifest",

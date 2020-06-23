@@ -11,7 +11,7 @@ const SectionSubTitleDescStyles = styled(SectionSubTitleStyles)`
   font-size: 13px;
   margin: 0 0 15px;
   font-weight: 500;
-  color: ${color("tan")};
+  color: ${color("tan", "lt")};
   @media screen and (min-width: 760px) {
     margin: -8px 0 13px;
   }

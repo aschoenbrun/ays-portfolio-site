@@ -27,7 +27,7 @@ const InfoDivStyles = styled.span`
   margin: -1px 13px 0 10px;
   margin-bottom: 0;
   font-size: 11px;
-  font-weight: 100;
+  font-weight: 200;
   letter-spacing: -0.1em;
   color: ${color("tan", "lt")};
   @media screen and (min-width: 760px) {

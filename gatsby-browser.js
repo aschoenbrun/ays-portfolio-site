@@ -1,3 +1,8 @@
+// FONTS
+require("typeface-fira-code");
+require("typeface-fira-sans");
+require("typeface-open-sans");
+
 // Prompt user to update page
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
