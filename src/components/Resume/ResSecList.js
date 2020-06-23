@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components/macro";
-import { ResListContext } from "../../pages/resume";
 import ResItemList from "./ResItemList";
 import SectionTitle from "../SectionTitle";
 
@@ -24,7 +24,53 @@ const ResItemListUl = styled.ul`
 `;
 
 const ResSubList = () => {
-  const resSections = useContext(ResListContext);
+  const query = graphql`
+    query {
+      sanityResume {
+        sections {
+          name
+          resumeSubSections {
+            ... on SanityResumeSkill {
+              _key
+              name
+              listItems
+            }
+            ... on SanityResumeExperience {
+              _key
+              position
+              company
+              location {
+                city
+                state
+              }
+              dateStart
+              dateEnd
+              currentPosition
+              listItems
+            }
+            ... on SanityResumeEducation {
+              _key
+              schoolName
+              location {
+                city
+                state
+              }
+              accomplishments
+            }
+            ... on SanityResumeReference {
+              _key
+              name
+              email
+              phone
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const staticQuery = useStaticQuery(query);
+  const resSections = staticQuery.sanityResume.sections;
 
   const list = resSections.map((resSection) => {
     let dir;
