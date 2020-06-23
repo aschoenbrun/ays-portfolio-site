@@ -1,5 +1,5 @@
 import React from "react";
-import camelCase from "camelCase";
+import { camelCase } from "camel-case";
 import ListItem from "../ListItem";
 
 const ResItemSubListItems = ({ resListItem, itemTitle, dir }) => {
