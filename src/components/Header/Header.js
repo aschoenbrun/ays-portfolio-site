@@ -28,7 +28,7 @@ const Header = () => {
       : headerPosRef.current.classList.remove("scrolled");
   }, [visible]);
 
-  const headerHeight = min760 ? 203 : 125;
+  const headerHeight = min760 ? 125 : 203;
 
   const scrolledHeaderVariantsMobile = {
     closed: {
