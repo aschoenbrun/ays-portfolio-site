@@ -15,6 +15,7 @@ const HeaderStyles = styled(motion.header)`
   z-index: 3000;
   position: fixed;
   top: 0;
+  height: ${(props) => `${props.headerHeight}px`};
 `;
 
 const Header = () => {
@@ -27,9 +28,11 @@ const Header = () => {
       : headerPosRef.current.classList.remove("scrolled");
   }, [visible]);
 
+  const headerHeight = min760 ? 203 : 125;
+
   const scrolledHeaderVariantsMobile = {
     closed: {
-      top: -203,
+      top: `-${headerHeight}px`,
       transition: { when: "afterChildren" },
     },
     open: {
@@ -39,7 +42,7 @@ const Header = () => {
 
   const scrolledHeaderVariantsDesktop = {
     closed: {
-      top: -125,
+      top: `-${headerHeight}px`,
     },
     open: {
       top: 0,
@@ -57,6 +60,7 @@ const Header = () => {
         navOpen && visible ? "open" : !navOpen && visible ? "closed" : "open"
       }
       transition={{ type: "tween" }}
+      headerHeight={headerHeight}
     >
       <HeaderBartop />
       <HeaderBarBottom />
