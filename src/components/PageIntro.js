@@ -8,11 +8,16 @@ const PageIntroStyle = styled.div`
   display: flex;
   justify-content: ${(props) => (props.centerIntro ? "center" : "flex-start")};
   align-items: flex-start;
-  font-size: 18px;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 22px;
+  font-weight: 300;
   line-height: 1.8em;
   letter-spacing: 0.07em;
   margin-top: 0;
   margin-bottom: 75px;
+  strong {
+    font-weight: 500;
+  }
   .btn {
     margin-top: 20px;
   }
