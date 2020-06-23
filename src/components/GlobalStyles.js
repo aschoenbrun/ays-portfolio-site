@@ -94,7 +94,7 @@ export const HeaderFooterText = styled.span`
   margin: 0 5px 10px 5px;
   &:last-child {
     margin-right: 0;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
   }
   @media screen and (min-width: 760px) {
     margin: 0 10px 0 0;
