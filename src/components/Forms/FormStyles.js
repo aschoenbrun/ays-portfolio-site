@@ -22,6 +22,8 @@ export const FieldStyles = styled.div`
     border: 2px solid ${color("tan")};
     transition: 0.5s;
     padding: ${fieldPadding};
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
   }
   &.focused {
     input,
