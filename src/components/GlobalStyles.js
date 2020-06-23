@@ -36,9 +36,15 @@ export const color = (color, variation) => {
 const GlobalStyles = createGlobalStyle`
 
   html, body, p, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  html, body, p {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fira Sans', sans-serif;
   }
 
   a {

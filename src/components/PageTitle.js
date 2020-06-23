@@ -9,7 +9,8 @@ export const PageTitleStyles = styled.h1`
   color: ${color("blue")};
   margin: 0;
   font-size: 40px;
-  font-weight: 100;
+  font-family: "Fira Sans";
+  font-weight: 200;
   text-align: center;
   span {
     display: block;
