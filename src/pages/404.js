@@ -9,7 +9,7 @@ const NotFound404 = ({ location }) => {
   return (
     <LayoutMain location={location} pageData={pageData}>
       <PageTitle>I DONE MESSED UP!</PageTitle>
-      <PageIntro>
+      <PageIntro centerIntro={true}>
         Try to navigate to another page. If that doesn't work, please let me
         know.
       </PageIntro>

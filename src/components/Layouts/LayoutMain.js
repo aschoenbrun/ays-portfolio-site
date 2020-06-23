@@ -19,15 +19,15 @@ const navItemArr = [
   },
   {
     name: "Resume",
-    uri: "Resume",
+    uri: "resume",
   },
   {
     name: "Gallery",
-    uri: "Gallery",
+    uri: "gallery",
   },
   {
     name: "Contact",
-    uri: "Contact",
+    uri: "contact",
   },
 ];
 
@@ -36,7 +36,8 @@ const navItemArr = [
 const ContentStyles = styled.main`
   position: relative;
   width: 85%;
-  margin: 300px auto 0;
+  margin: 0 auto;
+  padding-top: 300px;
   @media screen and (min-width: 1024px) {
     width: 760px;
   }
@@ -44,7 +45,7 @@ const ContentStyles = styled.main`
     width: 1150px;
   }
   @media screen and (min-width: 760px) {
-    margin-top: 275px;
+    padding-top: 275px;
   }
   /*position: relative;*/
   transition: opacity 0.5s;
@@ -111,7 +112,7 @@ const LayoutMain = ({ children, location, pageData }) => {
           value={{ navOpen, setNavOpen, navItemArr, visible, setVisible }}
         >
           <Header />
-          <ContentStyles>{children}</ContentStyles>
+          <ContentStyles id="site-content">{children}</ContentStyles>
           <AnimatePresence>
             {navOpen && max760 && (
               <MenuBg
