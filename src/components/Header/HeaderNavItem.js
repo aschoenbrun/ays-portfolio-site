@@ -115,6 +115,7 @@ const HeaderNavItem = ({ navItem }) => {
   }, [hover]);
   const pageContext = useContext(PageContext);
   const uri = navItem.uri !== "" ? `/${navItem.uri}/` : "/";
+  console.log(uri);
   return (
     <HeaderNavItemStyles
       ref={hoverClassRef}
