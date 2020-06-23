@@ -88,16 +88,16 @@ module.exports = {
         defer: true,
       },
     },
-    {
-      resolve: "gatsby-plugin-offline",
-      options: {
-        precachePages: [`/`, `/resume/`, `/gallery/`, `/contact/`],
-        workboxConfig: {
-          globPatterns: ["**/*"],
-        },
-      },
-    },
-    // "gatsby-plugin-remove-serviceworker",
+    // {
+    //   resolve: "gatsby-plugin-offline",
+    //   options: {
+    //     precachePages: [`/`, `/resume/`, `/gallery/`, `/contact/`],
+    //     workboxConfig: {
+    //       globPatterns: ["**/*"],
+    //     },
+    //   },
+    // },
+    "gatsby-plugin-remove-serviceworker",
     "gatsby-plugin-smoothscroll",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-styled-components",
