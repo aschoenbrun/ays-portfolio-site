@@ -16,10 +16,12 @@ const GalleryImgUtilStyles = styled(motion.div)`
   bottom: 4px;
   display: grid;
   grid-template-columns: ${(props) =>
-    props.glyTest || props.glyLink
-      ? "1fr auto auto"
-      : props.glyTest && props.glyLink
+    props.glyTest && props.glyLink
       ? "1fr auto auto auto"
+      : props.glyTest
+      ? "1fr auto auto"
+      : props.glyLink
+      ? "1fr auto auto"
       : "1fr auto"};
   grid-gap: 4px;
   width: calc(100% - 8px);
@@ -30,14 +32,17 @@ const GalleryImgUtilStyles = styled(motion.div)`
 `;
 
 const GalleryNameStyles = styled.h2`
-  padding: 7px 13px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 13px;
   background-color: rgba(0, 0, 0, 0.65);
   text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
-  font-size: 15px;
+  font-size: 10px;
   line-height: 1em;
   font-weight: 300;
   margin: 0;
   color: white;
+  height: 29px;
   @media screen and (min-width: 420px) {
     font-size: 17px;
   }
@@ -51,23 +56,18 @@ const GalleryUtilBtnStyles = styled(ButtonStyles)`
 `;
 
 const GalleryTestStyles = styled.div`
-  ${(props) =>
-    props.glyTest || props.glyLink
-      ? "grid-column: 1 / 4"
-      : props.glyTest && props.glyLink
-      ? "grid-column: 1 / 5"
-      : "grid-column: 1 / 3"};
+  ${(props) => (props.glyLink ? "grid-column: 1 / 5" : "grid-column: 1 / 4")};
   background-color: rgba(0, 0, 0, 0.75);
   p {
     margin: 7px 13px;
     font-size: 13px;
-    line-height: 1.65rem;
+    line-height: 1.2rem;
     font-weight: 300;
     font-style: italic;
     color: white !important;
     max-height: auto;
     text-shadow: 0px 0.5px 3px rgba(0, 0, 0, 0.75);
-    max-height: 125px;
+    max-height: 85px;
     overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: ${color("orange", "greyLt50")};
@@ -77,6 +77,10 @@ const GalleryTestStyles = styled.div`
     &::-webkit-scrollbar-thumb {
       background-color: ${color("orange", "greyLt50")};
       box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
+    }
+    @media screen and (min-width: 420px) {
+      max-height: 125px;
+      line-height: 1.65rem;
     }
   }
 `;
@@ -91,7 +95,7 @@ const galUtilBarVariants = {
     y: 0,
   },
   closed: {
-    y: "calc(100% - 31px)",
+    y: "calc(100% - 28px)",
   },
 };
 
@@ -137,7 +141,7 @@ const GalleryUtils = ({
   const GalleryTest = () => {
     return (
       glyTest && (
-        <GalleryTestStyles glyTest={glyTest}>
+        <GalleryTestStyles glyLink={glyLink}>
           <p>{glyTest}</p>
         </GalleryTestStyles>
       )
