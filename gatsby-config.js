@@ -88,7 +88,15 @@ module.exports = {
         defer: true,
       },
     },
-    "gatsby-plugin-remove-serviceworker",
+    {
+      resolve: "gatsby-plugin-offline",
+      options: {
+        workboxConfig: {
+          globPatterns: ["**/*"],
+        },
+      },
+    },
+    // "gatsby-plugin-remove-serviceworker",
     "gatsby-plugin-smoothscroll",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-styled-components",
