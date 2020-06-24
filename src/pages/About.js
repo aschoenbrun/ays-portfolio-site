@@ -12,7 +12,9 @@ const AboutMe = ({ data, location }) => {
 
   return (
     <LayoutMain location={location} pageData={pageData}>
+      <PageTitle>{pageTitle}</PageTitle>
       <PageIntro>{intro}</PageIntro>
+      <ReactMarkdown source={content} className="react-markdown" />
       <Button text="View Resume" url="/Resume/#site-content" target="_parent" />
     </LayoutMain>
   );
