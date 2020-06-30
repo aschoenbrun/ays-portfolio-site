@@ -5,15 +5,20 @@ import PageTitle from "../components/PageTitle";
 import LayoutMain from "../components/Layouts/LayoutMain";
 import PageIntro from "../components/PageIntro";
 import Button from "../components/Button/Button";
+import HpBanner from "../components/HomePage/HpBanner";
 
 const AboutMe = ({ data, location }) => {
-  const { sanityPage: pageData } = data;
-  const { pageTitle, intro, content } = pageData;
+  const { sanityHomePage: pageData } = data;
+  const { hpIntro, hpBanner, hpServiceBlockLT, hpServiceBlockRT } = pageData;
+
+  console.log(hpIntro);
+  console.log(hpBanner);
+  console.log(hpServiceBlockLT);
+  console.log(hpServiceBlockRT);
 
   return (
     <LayoutMain location={location} pageData={pageData}>
-      <PageIntro>{intro}</PageIntro>
-      <Button text="View Resume" url="/Resume/#site-content" target="_parent" />
+      <HpBanner imgOrigUrl={hpBanner.bannerImgUrl.cloudinaryUrlField} />
     </LayoutMain>
   );
 };
@@ -22,10 +27,24 @@ export default AboutMe;
 
 export const query = graphql`
   query {
-    sanityPage(id: { eq: "f54675b5-e743-552b-83a5-f2f069eb31fb" }) {
-      pageTitle
-      intro
-      content
+    sanityHomePage(id: { eq: "f5eb4dd0-87df-59ba-a4c9-a6342099c723" }) {
+      hpIntro
+      hpBanner {
+        bannerImgUrl {
+          cloudinaryUrlField
+          alt
+        }
+        bannerTextTop
+        bannerTextBottom
+      }
+      hpServiceBlockLT {
+        blockTitle
+        blockText
+      }
+      hpServiceBlockRT {
+        blockTitle
+        blockText
+      }
     }
   }
 `;
