@@ -61,10 +61,12 @@ const HeaderNavToggle = () => {
 
   const toggleButtonVariants = {
     closed: {
-      paddingTop: "55px",
+      paddingTop: "45px",
+      paddingBottom: 0,
     },
     open: {
       paddingTop: "7px",
+      paddingBottom: "6px",
     },
   };
 
