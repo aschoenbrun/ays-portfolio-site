@@ -26,7 +26,7 @@ const PageIntroStyle = styled.div`
 `;
 
 const PageIntroSlashStyle = styled.div`
-  margin-top: 5px;
+  margin-top: 12px;
   margin-right: 10px;
   line-height: 1em;
   letter-spacing: 0.01em;
