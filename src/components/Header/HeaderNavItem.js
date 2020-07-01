@@ -114,7 +114,7 @@ const HeaderNavItem = ({ navItem }) => {
       : hoverClassRef.current.classList.remove("hover");
   }, [hover]);
   const pageContext = useContext(PageContext);
-  const uri = `${navItem.uri !== "" ? `/${navItem.uri}/` : "/"}#site-content`;
+  const uri = navItem.uri !== "" ? `/${navItem.uri}/` : "/";
   return (
     <HeaderNavItemStyles
       ref={hoverClassRef}
@@ -122,7 +122,7 @@ const HeaderNavItem = ({ navItem }) => {
       onMouseLeave={() => setHover(false)}
       className={uri === pageContext.location.pathname ? "active" : null}
     >
-      <Link to={uri}>
+      <Link to={`${uri}#site-content`}>
         <ButtonVidBG />
         <span>{navItem.name}</span>
       </Link>
