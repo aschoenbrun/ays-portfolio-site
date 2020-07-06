@@ -37,6 +37,8 @@ const navItemArr = [
 
 // const navHeight = `${navItemArr.length * 42 + 38 + 80}px`;
 
+const hdrCompPdg = "150px";
+
 const ContentStyles = styled.main`
   position: relative;
   width: ${(props) => (props.pageType !== "homePage" ? "85%" : "100%")};
@@ -50,7 +52,7 @@ const ContentStyles = styled.main`
   }
   @media screen and (min-width: 760px) {
     padding-top: ${(props) =>
-      props.pageType !== "homePage" ? "275px" : "150px"};
+      props.pageType !== "homePage" ? "275px" : hdrCompPdg};
   }
   /*position: relative;*/
   transition: opacity 0.5s;
@@ -111,7 +113,7 @@ const LayoutMain = ({ children, location, pageData }) => {
   console.log(pageData);
 
   return (
-    <PageContext.Provider value={{ location, pageData }}>
+    <PageContext.Provider value={{ location, pageData, hdrCompPdg }}>
       <GlobalStyles />
       <div id="sticky-footer__body">
         <HeaderMeta />

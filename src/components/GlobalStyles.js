@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from "styled-components/macro";
 const colors = {
   blue: {
     base: "rgb(0, 31, 43)",
+    dk: "rgb(0, 15, 20)",
   },
   yellow: {
     base: "rgb(255, 196, 0)",

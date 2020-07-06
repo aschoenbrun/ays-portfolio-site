@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/macro";
 import { useMediaQuery } from "react-responsive";
-import ReactPlayer from "react-player";
+import { PageContext } from "../Layouts/LayoutMain";
+import { color } from "../GlobalStyles";
 import cldnyUrlTrans from "../../scripts/cldnyUrlTrans";
 
 const HpBannerStyles = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 85vh;
+  height: calc(90vh - ${(props) => props.hdrCompPdg});
   background-image: url(${(props) => props.imgUrl});
 `;
 
+const HpBannerDrk = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: ${color("blue", "dk")};
+  mix-blend-mode: multiply;
+`;
+
 const HpBanner = ({ imgOrigUrl }) => {
+  const pageContext = useContext(PageContext);
   const min1200 = useMediaQuery({ minWidth: 1200 });
   const min1024 = useMediaQuery({ minWidth: 1024 });
   const min900 = useMediaQuery({ minWidth: 900 });
@@ -40,7 +53,11 @@ const HpBanner = ({ imgOrigUrl }) => {
     `w_${imgSize[0]},h_${imgSize[1]},c_fill,f_auto,q_auto`
   );
 
-  return <HpBannerStyles imgUrl={imgUrl}></HpBannerStyles>;
+  return (
+    <HpBannerStyles hdrCompPdg={pageContext.hdrCompPdg} imgUrl={imgUrl}>
+      <HpBannerDrk />
+    </HpBannerStyles>
+  );
 };
 
 export default HpBanner;
