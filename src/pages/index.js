@@ -9,13 +9,7 @@ import HpBanner from "../components/HomePage/HpBanner";
 
 const AboutMe = ({ data, location }) => {
   const { sanityHomePage: pageData } = data;
-  const {
-    hpIntro,
-    hpBanner,
-    hpServiceBlockLT,
-    hpServiceBlockRT,
-    _type,
-  } = pageData;
+  const { hpIntro, hpBanner, hpServiceBlockLT, hpServiceBlockRT } = pageData;
 
   console.log(hpIntro);
   console.log(hpBanner);
@@ -25,7 +19,7 @@ const AboutMe = ({ data, location }) => {
 
   return (
     <LayoutMain location={location} pageData={pageData}>
-      <HpBanner imgOrigUrl={hpBanner.bannerImgUrl.cloudinaryUrlField} />
+      <HpBanner />
     </LayoutMain>
   );
 };

@@ -25,8 +25,47 @@ const HpBannerDrk = styled.div`
   mix-blend-mode: multiply;
 `;
 
-const HpBanner = ({ imgOrigUrl }) => {
+const HpBannerText = styled.h2`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  filter: drop-shadow(0 0.5px 1px rgba(0, 0, 0, 0.75));
+`;
+
+const HpBannerTextSpanBase = styled.span`
+  display: block;
+  color: ${color("tan", "xlt")};
+  text-transform: uppercase;
+  line-height: 1em;
+  letter-spacing: 0.2em;
+`;
+
+const HpBannerTopText = styled(HpBannerTextSpanBase)`
+  font-size: 150px;
+  font-weight: 100;
+  letter-spacing: 0.2em;
+`;
+
+const HpBannerBotText = styled(HpBannerTextSpanBase)`
+  font-size: 60px;
+  font-weight: 200;
+`;
+
+const HpBannerTextDiv = styled.div`
+  height: 2px;
+  width: 100%;
+  background-color: ${color("tan", "xlt")};
+`;
+
+const HpBanner = () => {
   const pageContext = useContext(PageContext);
+  const { hdrCompPdg, pageData } = pageContext;
+  const { hpBanner } = pageData;
+  const { bannerImgUrl, bannerTextTop, bannerTextBottom } = hpBanner;
   const min1200 = useMediaQuery({ minWidth: 1200 });
   const min1024 = useMediaQuery({ minWidth: 1024 });
   const min900 = useMediaQuery({ minWidth: 900 });
@@ -49,12 +88,21 @@ const HpBanner = ({ imgOrigUrl }) => {
     : [490, 800];
 
   const imgUrl = cldnyUrlTrans(
-    imgOrigUrl,
+    bannerImgUrl.cloudinaryUrlField,
     `w_${imgSize[0]},h_${imgSize[1]},c_fill,f_auto,q_auto`
   );
 
   return (
-    <HpBannerStyles hdrCompPdg={pageContext.hdrCompPdg} imgUrl={imgUrl}>
+    <HpBannerStyles
+      imgOrigUrl={bannerImgUrl.cloudinaryUrlField}
+      hdrCompPdg={hdrCompPdg}
+      imgUrl={imgUrl}
+    >
+      <HpBannerText>
+        <HpBannerTopText>{bannerTextTop}</HpBannerTopText>
+        <HpBannerTextDiv />
+        <HpBannerBotText>{bannerTextBottom}</HpBannerBotText>
+      </HpBannerText>
       <HpBannerDrk />
     </HpBannerStyles>
   );

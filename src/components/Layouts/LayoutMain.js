@@ -110,8 +110,6 @@ const LayoutMain = ({ children, location, pageData }) => {
     },
   };
 
-  console.log(pageData);
-
   return (
     <PageContext.Provider value={{ location, pageData, hdrCompPdg }}>
       <GlobalStyles />
