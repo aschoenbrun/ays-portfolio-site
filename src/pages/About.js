@@ -11,7 +11,7 @@ const AboutMe = ({ data, location }) => {
   const { pageTitle, intro, content } = pageData;
 
   return (
-    <LayoutMain location={location} pageData={pageData}>
+    <LayoutMain location={location} pageData={data}>
       <PageTitle>{pageTitle}</PageTitle>
       <PageIntro>{intro}</PageIntro>
       <ReactMarkdown source={content} className="react-markdown" />
@@ -25,6 +25,7 @@ export default AboutMe;
 export const query = graphql`
   query {
     sanityPage(id: { eq: "f54675b5-e743-552b-83a5-f2f069eb31fb" }) {
+      _type
       pageTitle
       intro
       content

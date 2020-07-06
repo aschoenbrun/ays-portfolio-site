@@ -9,12 +9,19 @@ import HpBanner from "../components/HomePage/HpBanner";
 
 const AboutMe = ({ data, location }) => {
   const { sanityHomePage: pageData } = data;
-  const { hpIntro, hpBanner, hpServiceBlockLT, hpServiceBlockRT } = pageData;
+  const {
+    hpIntro,
+    hpBanner,
+    hpServiceBlockLT,
+    hpServiceBlockRT,
+    _type,
+  } = pageData;
 
   console.log(hpIntro);
   console.log(hpBanner);
   console.log(hpServiceBlockLT);
   console.log(hpServiceBlockRT);
+  console.log(data);
 
   return (
     <LayoutMain location={location} pageData={pageData}>
@@ -28,6 +35,7 @@ export default AboutMe;
 export const query = graphql`
   query {
     sanityHomePage(id: { eq: "f5eb4dd0-87df-59ba-a4c9-a6342099c723" }) {
+      _type
       hpIntro
       hpBanner {
         bannerImgUrl {

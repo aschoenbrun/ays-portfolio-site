@@ -43,7 +43,7 @@ const Gallery = ({ data, location }) => {
   });
 
   return (
-    <LayoutMain location={location} pageData={pageData}>
+    <LayoutMain location={location} pageData={data}>
       <PageTitle>{pageTitle}</PageTitle>
       <PageIntro centerIntro={centerIntro}>{intro}</PageIntro>
       <GalleryStyles>{galleryList}</GalleryStyles>
@@ -57,6 +57,7 @@ export default Gallery;
 export const query = graphql`
   query {
     sanityUiuxPage(id: { eq: "741e3266-3206-5d7a-ad20-b376318487fa" }) {
+      _type
       pageTitle
       intro
       centerIntro

@@ -14,7 +14,7 @@ const Resume = ({ data, location }) => {
 
   return (
     <ResListContext.Provider value={sections}>
-      <LayoutMain location={location} pageData={pageData}>
+      <LayoutMain location={location} pageData={data}>
         <PageTitle>{pageTitle}</PageTitle>
         <PageIntro
           btnText="Download Resume"
@@ -33,6 +33,7 @@ export default Resume;
 export const query = graphql`
   query {
     sanityResume {
+      _type
       pageTitle
       resumeIntro {
         introText

@@ -10,7 +10,7 @@ const Contact = ({ data, location }) => {
   const { pageTitle, intro, centerIntro } = pageData;
 
   return (
-    <LayoutMain location={location} pageData={pageData}>
+    <LayoutMain location={location} pageData={data}>
       <PageTitle>{pageTitle}</PageTitle>
       <PageIntro centerIntro={centerIntro}>{intro}</PageIntro>
       <ContactForm />
@@ -23,6 +23,7 @@ export default Contact;
 export const query = graphql`
   query {
     sanityCustPage(id: { eq: "af823fc8-df89-5a9e-b7a0-79f8f8fcb22d" }) {
+      _type
       pageTitle
       intro
       centerIntro

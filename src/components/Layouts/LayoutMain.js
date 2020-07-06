@@ -14,8 +14,12 @@ export const NavContext = React.createContext();
 
 const navItemArr = [
   {
-    name: "About",
+    name: "Home",
     uri: "", // HOME
+  },
+  {
+    name: "About",
+    uri: "About", // HOME
   },
   {
     name: "Resume",
@@ -35,17 +39,18 @@ const navItemArr = [
 
 const ContentStyles = styled.main`
   position: relative;
-  width: 85%;
+  width: ${(props) => (props.pageType !== "homePage" ? "85%" : "100%")};
   margin: 0 auto;
   padding-top: 300px;
   @media screen and (min-width: 1024px) {
-    width: 760px;
+    width: ${(props) => (props.pageType !== "homePage" ? "760px" : "100%")};
   }
   @media screen and (min-width: 1350px) {
-    width: 1150px;
+    width: ${(props) => (props.pageType !== "homePage" ? "1150px" : "100%")};
   }
   @media screen and (min-width: 760px) {
-    padding-top: 275px;
+    padding-top: ${(props) =>
+      props.pageType !== "homePage" ? "275px" : "150px"};
   }
   /*position: relative;*/
   transition: opacity 0.5s;
@@ -103,6 +108,8 @@ const LayoutMain = ({ children, location, pageData }) => {
     },
   };
 
+  console.log(pageData);
+
   return (
     <PageContext.Provider value={{ location, pageData }}>
       <GlobalStyles />
@@ -112,7 +119,9 @@ const LayoutMain = ({ children, location, pageData }) => {
           value={{ navOpen, setNavOpen, navItemArr, visible, setVisible }}
         >
           <Header />
-          <ContentStyles id="site-content">{children}</ContentStyles>
+          <ContentStyles pageType={pageData._type} id="site-content">
+            {children}
+          </ContentStyles>
           <AnimatePresence>
             {navOpen && max760 && (
               <MenuBg
