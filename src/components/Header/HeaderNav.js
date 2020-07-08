@@ -4,11 +4,13 @@ import HeaderNavItem from "./HeaderNavItem";
 import HeaderNavToggle from "./HeaderNavToggle";
 import { useMediaQuery } from "react-responsive";
 import { motion } from "framer-motion";
-import { NavContext } from "../Layouts/LayoutMain";
+import { PageContext, NavContext } from "../Layouts/LayoutMain";
 
-const navItems = (navItemArr) =>
+const navItems = (navItemArr, pageData) =>
   navItemArr.map((navItem) => {
-    return <HeaderNavItem key={navItem.name} navItem={navItem} />;
+    return pageData._type === "homePage" && navItem.uri === "" ? null : (
+      <HeaderNavItem key={navItem.name} navItem={navItem} />
+    );
   });
 
 // TODO: Check nav cross-browser compatability
@@ -37,6 +39,7 @@ const HeaderNavStyles = styled(motion.nav)`
 `;
 
 const HeaderNav = () => {
+  const { pageData } = useContext(PageContext);
   const { navOpen, navItemArr, visible } = useContext(NavContext);
   const max760 = useMediaQuery({ maxWidth: 760 });
 
@@ -59,7 +62,7 @@ const HeaderNav = () => {
       animate={max760 && navOpen ? "open" : max760 ? "closed" : "open"}
     >
       <ul>
-        {navItems(navItemArr)}
+        {navItems(navItemArr, pageData)}
         {(max760 || visible) && <HeaderNavToggle />}
       </ul>
     </HeaderNavStyles>

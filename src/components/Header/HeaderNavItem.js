@@ -120,7 +120,12 @@ const HeaderNavItem = ({ navItem }) => {
       ref={hoverClassRef}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={uri === pageContext.location.pathname ? "active" : null}
+      className={
+        uri === pageContext.location.pathname ||
+        uri === `${pageContext.location.pathname}#site-content`
+          ? "active"
+          : null
+      }
     >
       <Link to={uri}>
         <ButtonVidBG />
