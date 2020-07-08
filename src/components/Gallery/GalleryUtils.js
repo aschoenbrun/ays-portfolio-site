@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components/macro";
 import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 import { color } from "../GlobalStyles";
 import Button, { ButtonStyles } from "../Button/Button";
 import ButtonVidBg from "../Button/ButtonVidBg";
@@ -15,14 +16,7 @@ const GalleryImgUtilStyles = styled(motion.div)`
   position: absolute;
   bottom: 4px;
   display: grid;
-  grid-template-columns: ${(props) =>
-    props.glyTest && props.glyLink
-      ? "1fr auto auto auto"
-      : props.glyTest
-      ? "1fr auto auto"
-      : props.glyLink
-      ? "1fr auto auto"
-      : "1fr auto"};
+  grid-template-columns: ${(props) => props.clmns};
   grid-gap: 4px;
   width: calc(100% - 8px);
   margin: 0 4px;
@@ -56,7 +50,12 @@ const GalleryUtilBtnStyles = styled(ButtonStyles)`
 `;
 
 const GalleryTestStyles = styled.div`
-  ${(props) => (props.glyLink ? "grid-column: 1 / 5" : "grid-column: 1 / 4")};
+  ${(props) =>
+    props.glyLink && props.min768
+      ? "grid-column: 1 / 5"
+      : props.glyLink
+      ? "grid-column: 1 / 4"
+      : "grid-column: 1 / 3"};
   background-color: rgba(0, 0, 0, 0.75);
   p {
     margin: 7px 13px;
@@ -107,9 +106,10 @@ const GalleryUtils = ({
   setLtbxState,
 }) => {
   const [galleryTestToggle, setGalleryTestToggle] = useState(false);
+  const [hover, setHover] = useState(false);
   const testClass = useRef();
   const toggleIcon = useRef();
-  const [hover, setHover] = useState(false);
+  const max768 = useMediaQuery({ maxWidth: 768 });
 
   !galleryTestToggle
     ? (toggleIcon.current = <FaCommentMedical />)
@@ -141,7 +141,7 @@ const GalleryUtils = ({
   const GalleryTest = () => {
     return (
       glyTest && (
-        <GalleryTestStyles glyLink={glyLink}>
+        <GalleryTestStyles glyLink={glyLink} max768={max768}>
           <p>{glyTest}</p>
         </GalleryTestStyles>
       )
@@ -180,10 +180,30 @@ const GalleryUtils = ({
 
   const goToSiteIcon = <FaPlay />;
 
+  let clmns = "";
+  if (!max768) {
+    glyTest && glyLink
+      ? (clmns = "1fr auto auto auto")
+      : glyTest
+      ? (clmns = "1fr auto auto")
+      : glyLink
+      ? (clmns = "1fr auto auto")
+      : (clmns = "1fr auto");
+  } else {
+    glyTest && glyLink
+      ? (clmns = "1fr auto auto")
+      : glyTest
+      ? (clmns = "1fr auto")
+      : glyLink
+      ? (clmns = "1fr auto")
+      : (clmns = "1fr");
+  }
+
   return (
     <GalleryImgUtilStyles
       glyTest={glyTest}
       glyLink={glyLink}
+      clmns={clmns}
       ref={testClass}
       variants={galUtilBarVariants}
       initial="closed"
@@ -191,7 +211,7 @@ const GalleryUtils = ({
     >
       <GalleryNameStyles>{glyName}</GalleryNameStyles>
       <GalleryTestBtn />
-      <GalleryLbToggleBtn />
+      {!max768 && <GalleryLbToggleBtn />}
       {glyLink && (
         <Button
           classes="site-link"
