@@ -11,7 +11,7 @@ const HpBannerStyles = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(90vh - ${(props) => props.hdrCompPdg});
+  height: calc(100vh - ${(props) => props.hdrCompPdg});
   background-image: url(${(props) => props.imgUrl});
 `;
 

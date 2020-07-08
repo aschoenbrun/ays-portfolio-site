@@ -54,7 +54,6 @@
     "gatsby-plugin-styled-components": "^3.3.5",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-sanity": "^5.0.6",
-    "gatsby-transformer-sharp": "^2.5.10",
     "lightgallery.js": "^1.1.3",
     "lodash.throttle": "^4.1.1",
     "marked": "^1.0.0",
